@@ -62,6 +62,8 @@ a:link {
 
 a:hover {background-color:#FF0;}
 
+a:visited {color:#444444;}
+
 footer {margin-top: 10px;}
 
 footer p {color: white;}
