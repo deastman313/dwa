@@ -20,7 +20,19 @@ body {
 	font-family: 'Vollkorn', serif;
 }
 
-header {background-color: red; margin-bottom: 20px; height: 130px;}
+section p {
+	font-size: 13px;
+}
+
+header {
+	height: 130px; border-bottom: 1px solid black;
+	margin: 0 auto;
+}
+
+article p {
+	font-size: 16px;
+	line-height: 22px;
+}
 
 /* #Page Styles
 ================================================== */
