@@ -17,21 +17,48 @@
 /* #Site Styles
 ================================================== */
 body {
-	font-family: 'Vollkorn', serif;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0 auto;
+	
 }
 
+#header-wrapper {
+	width:100%;
+	margin: 0;
+	background: red;
+}	
+
 section p {
-	font-size: 13px;
+	font-size: 14px;
 }
 
 header {
-	height: 130px; border-bottom: 1px solid black;
+	height: 130px; 
 	margin: 0 auto;
 }
 
 article p {
 	font-size: 16px;
-	line-height: 22px;
+	line-height: 24px;
+	margin-top: 0px;
+}
+
+article h2 {
+	margin-bottom: 0px;
+}
+
+article {
+	
+}
+
+a:link {
+	background-color: #FFFBCC;
+	padding: 3px;
+	text-decoration: none;
+}
+
+a:hover {
+	background-color:#FF0;
 }
 
 /* #Page Styles
