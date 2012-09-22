@@ -20,12 +20,14 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	margin: 0 auto;
 	color: #444;
+	background:url(../images/brillant.png) repeat;
 }
 
 #header-wrapper {
 	width:100%;
 	margin: 0;
 	background: #CE2029;
+	border-bottom:1px solid #ac1b22;
 }	
 
 #footer-wrapper {
@@ -47,7 +49,7 @@ article p {
 
 article h2 {margin-bottom: 10px;}
 
-header h1 {letter-spacing: -0.006em;}
+header h1 {letter-spacing: -0.006em;;}
 
 section p {
 	font-size: 14px;
