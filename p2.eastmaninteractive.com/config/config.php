@@ -1,4 +1,4 @@
-<?
+<?php
 /* 
 When setting configurations, remember that any app is also impacted by the configurations found in /core/config/config.php;
 Most of the core configs can be overwritten here on the app level.
@@ -31,8 +31,8 @@ A email designated to receive messages from the server. Examples:
 */ 	
 	define('SYSTEM_EMAIL', 'webmaster@myapp.com'); 
 
-# Default DB name for this app
-	define('DB', "myapp_com"); 
+# Default DB name for this app -- check updated file
+	define('DB_NAME', "p2_eastmaninteractive_com"); 
 
 
 # If your app is going to have outgoing emails, you should fill in your SMTP settings
@@ -42,5 +42,5 @@ A email designated to receive messages from the server. Examples:
 	//define('SMTP_PASSWORD', '');
 
 # For extra security, you might want to set different salts than what the core uses
-	//define('PASSWORD_SALT', '');
-	//define('TOKEN_SALT', '');
+	define('PASSWORD_SALT', 'theface!');
+	define('TOKEN_SALT', 'gangamstyle');
