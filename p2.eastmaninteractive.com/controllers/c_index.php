@@ -16,7 +16,9 @@ class index_controller extends base_controller {
 			$this->template->content = View::instance('v_index_index');
 			
 		# Now set the <title> tag
-			$this->template->title = "Hello World";
+			$this->template->title = "Welcome to P!NG";
+			
+			$this->template->pageName = basename($_SERVER['PHP_SELF'], '.php');
 	
 		# If this view needs any JS or CSS files, add their paths to this array so they will get loaded in the head
 			$client_files = Array(
@@ -30,7 +32,31 @@ class index_controller extends base_controller {
 
 	}
 	
+	public function login($error = NULL) {
+
+	# Setup view
+		//$this->template->content = View::instance('v_users_login');
+		$this->template->content = View::instance('v_index_index');
+		$this->template->title   = "Login";
+		
+	# Pass data to the view. 
+		$this->template->content->error = $error;
 	
+	# Render template
+		echo $this->template;
+
+	}
 	
+	public function signup() {
+		
+		# Setup view
+			//$this->template->content = View::instance('v_users_signup');
+			$this->template->content = View::instance('v_index_index');
+			$this->template->title   = "Signup";
+			
+		# Render template
+			echo $this->template;
+		
+	}
 		
 } // end class
