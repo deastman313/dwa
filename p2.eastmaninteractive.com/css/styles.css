@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+h2, h3, h4, h5 {
+	font-family: 'Arvo', serif;
+	font-weight: normal;
+}
+
+body, h1 { font-family: 'PT Sans', sans-serif; }
+
+body { background:url(../images/subtle_dots.png) repeat;}
+
+.error {font-color: #F00;}
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unit h1 {
+	font-size: 85px;
+	letter-spacing: 2px;
+
+}
+
