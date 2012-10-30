@@ -7,18 +7,7 @@ class users_controller extends base_controller {
 		parent::__construct();	
 	}
 	
-
-public function signup() {
-		
-		# Setup view
-			$this->template->content = View::instance('v_users_signup');
-			$this->template->title   = "Signup";
-			
-		# Render template
-			echo $this->template;
-		
-	}
-	
+	# [Moved public function signup to the index controller]
 
 public function p_signup() {
 		
@@ -29,26 +18,30 @@ public function p_signup() {
 	$_POST['created']  = Time::now();
 	$_POST['modified'] = Time::now();
 	$_POST['token']    = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+	
+	# First check and see if this user has already signed up for an account
+	$q = "SELECT token 
+		FROM users 
+		WHERE email = '".$_POST['email']."'" ;
+	
+	$token = DB::instance(DB_NAME)->select_field($q);	
+	
+	if (!$token and $_POST['email']!="") {
 		
 	# Insert this user into the database
 	$user_id = DB::instance(DB_NAME)->insert("users", $_POST);
+	Router::redirect("/users/dashboard");
 	
-	# For now, just confirm they've signed up - we can make this fancier later
-	echo "You're signed up";
-		
+	} else {
+	
+	# For now, just print message -- NEED TO UPDATE
+	echo "This email is already associated with an account. Did you forget your username or password?";
+	
 	}
-	
-	
-public function login() {
-
-	# Setup view
-		$this->template->content = View::instance('v_users_login');
-		$this->template->title   = "Login";
 		
-	# Render template
-		echo $this->template;
-
-	}
+}
+	
+	# [Moved public function login to index controller]
 	
 
 public function p_login() {
@@ -69,10 +62,8 @@ public function p_login() {
 	$token = DB::instance(DB_NAME)->select_field($q);	
 				
 	# If we didn't get a token back, login failed
-	if(!$token) {
-			
-		# Send them back to the login page
-		Router::redirect("/users/login/");
+	if($token == "") {
+		Router::redirect("/"); # Note the addition of the parameter "error"
 		
 	# But if we did, login succeeded! 
 	} else {
@@ -81,17 +72,38 @@ public function p_login() {
 		setcookie("token", $token, strtotime('+1 year'), '/');
 		
 		# Send them to the main page - or whever you want them to go
-		Router::redirect("/users/login/");
+		Router::redirect("/users/dashboard");
 					
 	}	
 
+}
+
+public function dashboard() {
+
+	# If user is blank, they're not logged in, show message and don't do anything else
+	if(!$this->user) {
+		echo "Members only. <a href='/index/login'>Login</a>";
+		
+		# Return will force this method to exit here so the rest of 
+		# the code won't be executed and the profile view won't be displayed.
+		return false;
+	}
+	
+	# Setup view
+	$this->template->content = View::instance('v_users_dashboard');
+	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	$this->template->content->url = Router::uri();
+		
+	# Render template
+	echo $this->template;
+	
 }
 
 public function profile() {
 
 	# If user is blank, they're not logged in, show message and don't do anything else
 	if(!$this->user) {
-		echo "Members only. <a href='/users/login'>Login</a>";
+		echo "Members only. <a href='/index'>Login</a>";
 		
 		# Return will force this method to exit here so the rest of 
 		# the code won't be executed and the profile view won't be displayed.
@@ -105,6 +117,25 @@ public function profile() {
 	# Render template
 	echo $this->template;
 }
+
+public function p_profile() {
+			
+		# Associate this post with this user
+		$_POST['user_id']  = $this->user->user_id;
+		
+		# Unix timestamp of when this post was created / modified
+		$_POST['created']  = Time::now();
+		$_POST['modified'] = Time::now();
+		
+		# Insert
+		# Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
+		DB::instance(DB_NAME)->insert('profile', $_POST);
+		
+		# Quick and dirty feedback
+		echo "You just modified your profile";
+	
+}
+
 
 public function logout() {
 	
