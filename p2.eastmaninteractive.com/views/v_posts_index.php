@@ -1,9 +1,8 @@
 
 <? foreach($posts as $post): ?>
-	
 
-	<h3><?=$post['first_name']?> <?=$post['last_name']?> posted:</h3>
     <div class="well">
+    <h4><?=$post['first_name']?> <?=$post['last_name']?> posted on <?=$post['created']?>:</h4>
 	<?=$post['content']?>
 	</div>
 	
