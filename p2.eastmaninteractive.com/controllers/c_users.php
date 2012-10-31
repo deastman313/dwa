@@ -80,7 +80,7 @@ public function p_login() {
 
 }
 
-public function dashboard() {
+public function dashboard($add = NULL) {
 
 	# If user is blank, they're not logged in, show message and don't do anything else
 	if(!$this->user) {
@@ -96,19 +96,11 @@ public function dashboard() {
 	$this->template->content->subview = View::instance('v_users_profile');
 	$this->template->content->feed = View::instance('v_posts_index');
 	$this->template->content->compose = View::instance('v_posts_add');
+	$this->template->content->compose->add = $add;
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
 
-	# Build our query
-	/*
-	$q = "SELECT posts.*, users.user_id, users.first_name, users.last_name 
-		FROM posts
-		JOIN users USING (user_id)";*/
-		
-		/*$q = "SELECT posts.* 
-  		FROM users_users, posts
-  		WHERE posts.user_id = users_users.user_id_followed
-    	AND posts.user_id = ".$this->user->user_id;*/
+	# Build a query to print the posts of the users who the logged in user is following
 	
 	$q = "SELECT t3.*, t2.first_name, t2.last_name
      FROM posts t3
@@ -118,18 +110,29 @@ public function dashboard() {
      ON t2.user_id = t1.user_id_followed
      WHERE t1.user_id = ".$this->user->user_id;
 		
-
+	
 	# Run our query, grabbing all the posts and joining in the users	
 	$posts = DB::instance(DB_NAME)->select_rows($q);
+	
+	# Sort the post array that was returned from the DB by modified date
+	$date = array();
+		foreach ($posts as $key => $row) {
+			
+   		$modified[$key] = $row['modified'];
+		
+	}
+	array_multisort($modified, SORT_DESC, $posts);
+	
+	# Keep the most recent 6 posts
+	$postout = array_slice($posts, 0, 6);
 
 	# Pass data to the view
-	$this->template->content->feed->posts = $posts;
+	$this->template->content->feed->posts = $postout;
 
 	# Render view
 	echo $this->template;
        
 }
-
 
 
 /*public function p_profile() {
