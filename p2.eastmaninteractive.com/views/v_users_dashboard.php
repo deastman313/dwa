@@ -4,6 +4,7 @@
 	<div class="span4">
 	<?=$subview?>
     <?=$compose?>
+    
     </div>
 	<div class="span8">
     <h2>Recent P!NGs</h2>
