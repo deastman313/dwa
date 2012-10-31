@@ -10,7 +10,10 @@ class index_controller extends base_controller {
 		
 		# Any method that loads a view will commonly start with this
 		# First, set the content of the template with a view file
+		
 			$this->template->content = View::instance('v_index_index');
+			$this->template->content->signup = View::instance('v_users_signup');
+			$this->template->content->login = View::instance('v_users_login');
 			
 		# Now set the <title> tag
 			$this->template->title = "Welcome to P!NG";
@@ -28,21 +31,6 @@ class index_controller extends base_controller {
 			echo $this->template;
 
 	}
-
-	public function signup() {
-		
-		# Setup view
-			$this->template->content = View::instance('v_index_index');
-
-		# Set subview to actually be a view fragment
-			$this->template->content->subview = View::instance('v_users_signup');
-			
-		# Render template
-			echo $this->template->content;
-		
-	}
-	
-	
 
 		
 } // end class
