@@ -27,3 +27,7 @@ body { background:url(../images/subtle_dots.png) repeat;}
 
 }
 
+ul.nav a.active {
+	color: #FFF;
+}
+
