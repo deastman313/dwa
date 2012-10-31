@@ -6,9 +6,6 @@ class index_controller extends base_controller {
 		parent::__construct();
 	} 
 	
-	/*-------------------------------------------------------------------------------------------------
-	Access via http://yourapp.com/index/index/
-	-------------------------------------------------------------------------------------------------*/
 	public function index() {
 		
 		# Any method that loads a view will commonly start with this
@@ -31,32 +28,21 @@ class index_controller extends base_controller {
 			echo $this->template;
 
 	}
-	
-	public function login($error = NULL) {
 
-	# Setup view
-		//$this->template->content = View::instance('v_users_login');
-		$this->template->content = View::instance('v_index_index');
-		$this->template->title   = "Login";
-		
-	# Pass data to the view. 
-		$this->template->content->error = $error;
-	
-	# Render template
-		echo $this->template;
-
-	}
-	
 	public function signup() {
 		
 		# Setup view
-			//$this->template->content = View::instance('v_users_signup');
 			$this->template->content = View::instance('v_index_index');
-			$this->template->title   = "Signup";
+
+		# Set subview to actually be a view fragment
+			$this->template->content->subview = View::instance('v_users_signup');
 			
 		# Render template
-			echo $this->template;
+			echo $this->template->content;
 		
 	}
+	
+	
+
 		
 } // end class
