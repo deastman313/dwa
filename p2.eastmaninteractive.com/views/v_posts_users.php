@@ -1,3 +1,5 @@
+<h1>Find Some Users to Follow</h1>
+
 <form method='POST' action='/posts/p_follow'>
 		
 	<? foreach($users as $user): ?>
