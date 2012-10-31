@@ -12,11 +12,6 @@ class posts_controller extends base_controller {
 		
 	}
 	
-/*public function index() {
-
-	
-}
-*/
 public function users() {
 
 	# Set up the view
@@ -77,18 +72,7 @@ public function unfollow($user_id_followed) {
 
 }
 	
-	public function add() {
-	
-		# Setup view
-		$this->template->content = View::instance('v_posts_add');
-		$this->template->title   = "Add a new post";
-			
-		# Render template
-		echo $this->template;
-	
-	}
-	
-	public function p_add() {
+public function p_add() {
 			
 		# Associate this post with this user
 		$_POST['user_id']  = $this->user->user_id;
@@ -102,7 +86,7 @@ public function unfollow($user_id_followed) {
 		DB::instance(DB_NAME)->insert('posts', $_POST);
 		
 		# Quick and dirty feedback
-		echo "Your post has been added. <a href='/posts/add'>Add another?</a>";
+		Router::redirect("/users/dashboard/add");
 	
 	}
 	
