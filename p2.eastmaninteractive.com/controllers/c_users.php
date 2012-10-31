@@ -2,12 +2,10 @@
 
 class users_controller extends base_controller {
 	
-	//construct method gets called everytime
 	public function __construct() {
 		parent::__construct();	
 	}
 	
-	# [Moved public function signup to the index controller]
 
 public function p_signup() {
 		
@@ -30,7 +28,14 @@ public function p_signup() {
 		
 	# Insert this user into the database
 	$user_id = DB::instance(DB_NAME)->insert("users", $_POST);
+	
+	# Sign the new user in
+	$token = $_POST['token'];
+	@setcookie("token", $token, strtotime('+1 year'), '/');
+	
+	
 	Router::redirect("/users/dashboard");
+	
 	
 	} else {
 	
@@ -40,9 +45,6 @@ public function p_signup() {
 	}
 		
 }
-	
-	# [Moved public function login to index controller]
-	
 
 public function p_login() {
 	
@@ -91,34 +93,46 @@ public function dashboard() {
 	
 	# Setup view
 	$this->template->content = View::instance('v_users_dashboard');
+	$this->template->content->subview = View::instance('v_users_profile');
+	$this->template->content->feed = View::instance('v_posts_index');
+	$this->template->content->compose = View::instance('v_posts_add');
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
-	$this->template->content->url = Router::uri();
-		
-	# Render template
-	echo $this->template;
 	
+
+	# Build our query
+	/*
+	$q = "SELECT posts.*, users.user_id, users.first_name, users.last_name 
+		FROM posts
+		JOIN users USING (user_id)";*/
+		
+		/*$q = "SELECT posts.* 
+  		FROM users_users, posts
+  		WHERE posts.user_id = users_users.user_id_followed
+    	AND posts.user_id = ".$this->user->user_id;*/
+	
+	$q = "SELECT t3.*, t2.first_name, t2.last_name
+     FROM posts t3
+	 LEFT JOIN users t2
+     ON t3.user_id = t2.user_id
+	 LEFT JOIN users_users t1
+     ON t2.user_id = t1.user_id_followed
+     WHERE t1.user_id = ".$this->user->user_id;
+		
+
+	# Run our query, grabbing all the posts and joining in the users	
+	$posts = DB::instance(DB_NAME)->select_rows($q);
+
+	# Pass data to the view
+	$this->template->content->feed->posts = $posts;
+
+	# Render view
+	echo $this->template;
+       
 }
 
-public function profile() {
 
-	# If user is blank, they're not logged in, show message and don't do anything else
-	if(!$this->user) {
-		echo "Members only. <a href='/index'>Login</a>";
-		
-		# Return will force this method to exit here so the rest of 
-		# the code won't be executed and the profile view won't be displayed.
-		return false;
-	}
-	
-	# Setup view
-	$this->template->content = View::instance('v_users_profile');
-	$this->template->title   = "Profile of".$this->user->first_name;
-		
-	# Render template
-	echo $this->template;
-}
 
-public function p_profile() {
+/*public function p_profile() {
 			
 		# Associate this post with this user
 		$_POST['user_id']  = $this->user->user_id;
@@ -134,8 +148,7 @@ public function p_profile() {
 		# Quick and dirty feedback
 		echo "You just modified your profile";
 	
-}
-
+}*/
 
 public function logout() {
 	
@@ -156,7 +169,8 @@ public function logout() {
 	Router::redirect("/");
 
 }
-	
+
+
 
 }
 	
