@@ -9,7 +9,7 @@
 
 	<strong>What's up?</strong><br>
 
-	<textarea name='content' id="inputPost" placeholder="Write something..."></textarea>
+	<textarea name='content' id="inputPost" placeholder="Compose a P!NG..."></textarea>
 
 	<br><br>
 	<button type='submit' class="btn">Submit</button>
