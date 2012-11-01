@@ -35,6 +35,8 @@ public function users() {
 	# This will come in handy when we get to the view
 	# Store our results (an array) in the variable $connections
 	$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
+	
+	#Select_array allows you to specify the index position
 			
 	# Pass data (users and connections) to the view
 	$this->template->content->users       = $users;
@@ -42,7 +44,8 @@ public function users() {
 
 	# Render the view
 	echo $this->template;
-}
+	
+	}
 
 public function follow($user_id_followed=NULL) {
 		 
@@ -59,7 +62,7 @@ public function follow($user_id_followed=NULL) {
 	# Send them back
 	Router::redirect("/posts/users");
 
-}
+	}
 
 public function unfollow($user_id_followed) {
 
@@ -70,7 +73,7 @@ public function unfollow($user_id_followed) {
 	# Send them back
 	Router::redirect("/posts/users");
 
-}
+	}
 	
 public function p_add() {
 			
@@ -90,6 +93,33 @@ public function p_add() {
 	
 	}
 	
+public function manage() {
+	
+	$this->template->content = View::instance('v_posts_manage');
+	$this->template->title = "Manage Your P!NGs";
+	
+	$q = "SELECT * 
+		FROM posts
+		WHERE user_id = ".$this->user->user_id;
+		
+	$myposts = DB::instance(DB_NAME)->select_rows($q);
+	
+	$this->template->content->myposts=$myposts;
+	
+	echo $this->template;
+	
+	}
+
+public function delete($delete) {
+	
+	$where_condition = 'WHERE post_id = '.$delete;
+	
+	DB::instance(DB_NAME)->delete('posts', $where_condition);
+	
+	Router::redirect('/posts/manage');
+	
+	}
+
 }
 
 ?>
