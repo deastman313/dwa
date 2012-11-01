@@ -19,8 +19,8 @@ public function p_signup() {
 	
 	# First check and see if this user has already signed up for an account
 	$q = "SELECT token 
-		FROM users 
-		WHERE email = '".$_POST['email']."'" ;
+		  FROM users 
+		  WHERE email = '".$_POST['email']."'" ;
 	
 	$token = DB::instance(DB_NAME)->select_field($q);	
 	
@@ -33,9 +33,7 @@ public function p_signup() {
 	$token = $_POST['token'];
 	@setcookie("token", $token, strtotime('+1 year'), '/');
 	
-	
 	Router::redirect("/users/dashboard");
-	
 	
 	} else {
 	
@@ -99,7 +97,7 @@ public function dashboard($add = NULL) {
 	$this->template->content->compose->add = $add;
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
-
+	
 	# Build a query to print the posts of the users who the logged in user is following
 	
 	$q = "SELECT t3.*, t2.first_name, t2.last_name
@@ -109,7 +107,6 @@ public function dashboard($add = NULL) {
 	 LEFT JOIN users_users t1
      ON t2.user_id = t1.user_id_followed
      WHERE t1.user_id = ".$this->user->user_id;
-		
 	
 	# Run our query, grabbing all the posts and joining in the users	
 	$posts = DB::instance(DB_NAME)->select_rows($q);
@@ -134,8 +131,8 @@ public function dashboard($add = NULL) {
        
 }
 
-
-/*public function p_profile() {
+/*
+public function p_profile() {
 			
 		# Associate this post with this user
 		$_POST['user_id']  = $this->user->user_id;
@@ -151,25 +148,25 @@ public function dashboard($add = NULL) {
 		# Quick and dirty feedback
 		echo "You just modified your profile";
 	
-}*/
-
+}
+*/
 public function logout() {
 	
-	# Generate and save a new token for next login
-	$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
+		# Generate and save a new token for next login
+		$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
+		
+		# Create the data array we'll use with the update method
+		# In this case, we're only updating one field, so our array only has one entry
+		$data = Array("token" => $new_token);
 	
-	# Create the data array we'll use with the update method
-	# In this case, we're only updating one field, so our array only has one entry
-	$data = Array("token" => $new_token);
+		# Do the update
+		DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
 	
-	# Do the update
-	DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
-	
-	# Delete their token cookie - effectively logging them out
-	setcookie("token", "", strtotime('-1 year'), '/');
-	
-	# Send them back to the main landing page
-	Router::redirect("/");
+		# Delete their token cookie - effectively logging them out
+		setcookie("token", "", strtotime('-1 year'), '/');
+		
+		# Send them back to the main landing page
+		Router::redirect("/index");
 
 }
 
