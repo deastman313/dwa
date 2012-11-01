@@ -14,6 +14,7 @@ class index_controller extends base_controller {
 			$this->template->content = View::instance('v_index_index');
 			$this->template->content->signup = View::instance('v_users_signup');
 			$this->template->content->login = View::instance('v_users_login');
+			$this->template->content->welcome = View::instance('v_users_login');
 			
 		# Now set the <title> tag
 			$this->template->title = "Welcome to P!NG";
