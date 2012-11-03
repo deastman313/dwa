@@ -112,29 +112,19 @@ public function p_password() {
 	# Generate a new password; this is what we'll send in the email
 	$new_password = Utils::generate_random_string();
 	
-
 	# Create a hashed version to store in the database
 	$hashed_password = sha1(PASSWORD_SALT.$new_password);
 		
 	# Update database with new hashed password
 	$update = DB::instance(DB_NAME)->update("users", Array("password" => $hashed_password), "WHERE user_id = ".$user_id);
-	}
 	
-	# Success
-	if($update) {
-		return $new_password;
-		$to[]    = Array("name" => $post['email'], "email" => $post['email']);
-		$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
-		$body    = View::instance('e_users_new_password');
-		$body->password = $new_password;
-		
-		# Send email
-		$email = Email::send($to, $from,"Your password has been reset", nl2br($body), true, '');
-	}
-	else {
-	return false;
-	}
 	
+	$to[]    = Array("name" => $_POST['email'], "email" => $_POST['email']);
+	$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
+	$body    = View::instance('e_users_new_password');
+	$body->password = $new_password;
+	$subject = "Password reset";
+  }
 }
 
 
