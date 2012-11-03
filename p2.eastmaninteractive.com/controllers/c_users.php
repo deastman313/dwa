@@ -42,6 +42,12 @@ public function p_signup() {
 	$token = $_POST['token'];
 	@setcookie("token", $token, strtotime('+1 year'), '/');
 	
+	$to[] = Array("name" => $user->first_name, "email" => $_POST['email']);
+	$from = Array("name" => APP_NAME, "email" => APP_EMAIL);
+	$subject = "Welcome to P!NG";		
+	$body = "Hi ".$_POST['first_name'].", welcome to the app";
+	$email = Email::send($to, $from, $subject, $body, true, $cc, $bcc);
+	
 	#Send them to their dashboard page
 	Router::redirect("/users/dashboard");
 	
