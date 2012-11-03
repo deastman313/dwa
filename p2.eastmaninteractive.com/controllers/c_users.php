@@ -42,12 +42,6 @@ public function p_signup() {
 	$token = $_POST['token'];
 	@setcookie("token", $token, strtotime('+1 year'), '/');
 	
-	$to[] = Array("name" => $user->first_name, "email" => $_POST['email']);
-	$from = Array("name" => APP_NAME, "email" => APP_EMAIL);
-	$subject = "Welcome to P!NG";		
-	$body = "Hi ".$_POST['first_name'].", welcome to the app";
-	$email = Email::send($to, $from, $subject, $body, true, $cc, $bcc);
-	
 	#Send them to their dashboard page
 	Router::redirect("/users/dashboard");
 	
@@ -117,13 +111,15 @@ public function p_password() {
 	
 	# Generate a new password; this is what we'll send in the email
 	$new_password = Utils::generate_random_string();
-		
+	
+
 	# Create a hashed version to store in the database
-	$hashed_password = $this->hash_password($new_password);
+	$hashed_password = sha1(PASSWORD_SALT.$new_password);
 		
 	# Update database with new hashed password
 	$update = DB::instance(DB_NAME)->update("users", Array("password" => $hashed_password), "WHERE user_id = ".$user_id);
 	}
+	
 	# Success
 	if($update) {
 		return $new_password;
