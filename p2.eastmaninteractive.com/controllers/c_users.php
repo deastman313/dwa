@@ -118,12 +118,14 @@ public function p_password() {
 	# Update database with new hashed password
 	$update = DB::instance(DB_NAME)->update("users", Array("password" => $hashed_password), "WHERE user_id = ".$user_id);
 	
+	echo $new_password;
 	
-	$to[]    = Array("name" => $_POST['email'], "email" => $_POST['email']);
+	$to[]    = Array("name" => "P!NGER", "email" => $_POST['email']);
 	$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
 	$body    = View::instance('e_users_new_password');
 	$body->password = $new_password;
 	$subject = "Password reset";
+	$email = Email::send($to, $from, $subject, nl2br($body), true, '');
   }
 }
 
