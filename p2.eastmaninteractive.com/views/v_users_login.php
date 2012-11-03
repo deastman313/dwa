@@ -8,11 +8,9 @@
         <label class="control-label" for="inputPassword">Password</label>
         <input type="password" id="inputPassword" name="password">
                     
-        <label class="checkbox">
-        <input type="checkbox" name="remember_user"> Remember me on this computer
-    	</label>
-                    
          <br />
          <button type="submit" class="btn">Submit</button>
     	</form>
+        <a href="/users/password">Forgot password?</a>
+        
 </div>
