@@ -127,6 +127,13 @@ public function p_password() {
 	# Success
 	if($update) {
 		return $new_password;
+		$to[]    = Array("name" => $post['email'], "email" => $post['email']);
+		$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
+		$body    = View::instance('e_users_new_password');
+		$body->password = $new_password;
+		
+		# Send email
+		$email = Email::send($to, $from,"Your password has been reset", nl2br($body), true, '');
 	}
 	else {
 	return false;
@@ -134,18 +141,6 @@ public function p_password() {
 	
 }
 
-public function send_new_password($new_password, $post, $subject = "Your password has been reset") {
-		
-		# Setup email
-			$to[]    = Array("name" => $post['email'], "email" => $post['email']);
-			$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
-			$body    = View::instance('e_users_new_password');
-			$body->password = $new_password;
-		
-		# Send email
-			$email = Email::send($to, $from, $subject, nl2br($body), true, '');
-	
-}
 
 
 /************************************************************************
