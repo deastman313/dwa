@@ -5,7 +5,8 @@ class base_controller {
 	public $user;
 	public $userObj;
 	public $template;
-	public $email_template;
+	public $email_template;	
+	
 
 	/*-------------------------------------------------------------------------------------------------
 	
