@@ -2,7 +2,7 @@
 
 <? if($profile_contents['user_id']!=$user->user_id): ?>
 
-        Member since: <?= $profile_contents['account_created']?><br />
+        Member since: <?= Time::display($profile_contents['account_created']),"",""?><br />
         Location: <?= $profile_contents['location']?><br />
         Interests: <?= $profile_contents['interests']?><br />
         Github Repository: <?= $profile_contents['github']?><br />
