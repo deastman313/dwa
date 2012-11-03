@@ -88,40 +88,13 @@ public function p_login() {
 
 }
 
-public function profile($user_id) {
-	
-	# If user is blank, redirect to a restricted page with a message asking he/she to sign up or log in
-	if(!$this->user) {
-		
-		Router::redirect("/index/index/restricted");
-			
-	}
-	else {
-	
-	#Set up the view
-	$this->template->content = View::instance('v_users_profile');
-		
-	# Grab the contents of the profile out of the database 
-	# We will test if the user has created a profile and if she/he has not, prompt to create
-	
-	$q = "SELECT t2.user_id, t2.email, t2.first_name, t2.last_name, t2.created as account_created, t1.location, t1.interests, t1.github, t1.visibility
-	FROM users t2
-	LEFT JOIN profiles t1
-	ON t2.user_id=t1.user_id
-	WHERE t2.user_id =".$user_id;
-	
-	# Gather the rows from the query
-	$profile_contents = DB::instance(DB_NAME)->select_rows($q);		
-	
-	# Pass the profile_contents variable to the view so that we have access to it
-	$this->template->content->profile_contents=$profile_contents;	
-			
-	}
-	
-	# Render the view
-	echo $this->template;
 
-}
+/************************************************************************
+
+The dashboard function gathers the views from posts_index and add
+so the user can see an organized post stream.
+
+************************************************************************/
 
 public function dashboard($add = NULL) {
 
@@ -140,7 +113,7 @@ public function dashboard($add = NULL) {
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
 	# Build a query to print the posts of the users who the logged in user is following AND their own posts
-	# Sort the returned query and limit to the 6 most recent posts
+	# Sort the returned query and limit to the 10 most recent posts
 	
 	$q = "SELECT t3.*, t2.first_name, t2.last_name
      FROM posts t3
@@ -157,12 +130,13 @@ public function dashboard($add = NULL) {
 	
 	$noposts = NULL;
 	
-	# If there aren't any posts returned from the query, set noposts to true
+	# If there aren't any posts returned from the query, set noposts to true and pass this to the view
 	if(empty($posts)){
 		
 	$noposts = TRUE;
 	$this->template->content->noposts = $noposts;
 
+	# Otherwise, gather up the returned posts and pass to the user's feed
 	} else {
 	
 		$this->template->content->feed->posts = $posts;
@@ -171,6 +145,63 @@ public function dashboard($add = NULL) {
 	# Render view
 	echo $this->template;
        
+}
+
+/************************************************************************
+
+The profile and p_profile functions will allow the logged in user to: 
+1) create a rudimentary profile and 2) view other users profiles. 
+User_id is passed as a parameter to the profile function so we can get a 
+specific user's information from the database. User_id is set to the 
+primary key in the profile database so when the logged in user's data
+is posted to the DB, it deletes the previous version. 
+
+************************************************************************/
+
+
+public function profile($user_id) {
+	
+	# If user is blank, redirect to a restricted page with a message asking he/she to sign up or log in
+	if(!$this->user) {
+		
+		Router::redirect("/index/index/restricted");
+			
+	}
+	else {
+	
+	#Set up the view
+	$this->template->content = View::instance('v_users_profile');
+		
+	# Grab the contents of the profile out of the database 
+	
+	$q = "SELECT t2.user_id, t2.email, t2.first_name, t2.last_name, t2.created as account_created, t1.location, t1.interests, t1.github, t1.visibility
+	FROM users t2
+	LEFT JOIN profiles t1
+	ON t2.user_id=t1.user_id
+	WHERE t2.user_id =".$user_id;
+	
+	# Gather the rows from the query
+	$profile_contents = DB::instance(DB_NAME)->select_row($q);
+	
+	foreach($profile_contents as $key=> &$value)
+	{
+		if ($value!=NULL) {
+			$value= $value;
+		}
+		else {
+			$value="Unspecified";
+		}
+		
+	}
+	
+	# Pass the profile_contents variable to the view so that we have access to it
+	$this->template->content->profile_contents=$profile_contents;	
+			
+	}
+	
+	# Render the view
+	echo $this->template;
+
 }
 
 public function p_profile() {
