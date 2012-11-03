@@ -94,6 +94,59 @@ public function p_login() {
 
 }
 
+public function password($error=NULL) {
+	
+	$this->template->content = View::instance('v_users_password');
+	$this->template->content->error=$error;
+	echo $this->template;
+	
+}
+
+public function p_password() {
+
+	$email = DB::instance(DB_NAME)->sanitize($_POST['email']);
+		
+	# Do we have a user with that email?
+	$user_id = DB::instance(DB_NAME)->select_field("SELECT user_id FROM users WHERE email = '".$email."'");
+		
+	# False will indicate a user was not found for this email
+	if(!$user_id) {
+		Router::redirect("/users/password/error");
+	}
+	else {
+	
+	# Generate a new password; this is what we'll send in the email
+	$new_password = Utils::generate_random_string();
+		
+	# Create a hashed version to store in the database
+	$hashed_password = $this->hash_password($new_password);
+		
+	# Update database with new hashed password
+	$update = DB::instance(DB_NAME)->update("users", Array("password" => $hashed_password), "WHERE user_id = ".$user_id);
+	}
+	# Success
+	if($update) {
+		return $new_password;
+	}
+	else {
+	return false;
+	}
+	
+}
+
+public function send_new_password($new_password, $post, $subject = "Your password has been reset") {
+		
+		# Setup email
+			$to[]    = Array("name" => $post['email'], "email" => $post['email']);
+			$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
+			$body    = View::instance('e_users_new_password');
+			$body->password = $new_password;
+		
+		# Send email
+			$email = Email::send($to, $from, $subject, nl2br($body), true, '');
+	
+}
+
 
 /************************************************************************
 
