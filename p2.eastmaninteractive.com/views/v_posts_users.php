@@ -20,7 +20,7 @@
             <? if(isset($connections[$user['user_id']])): ?>
             <a href='/posts/unfollow/<?=$user['user_id']?>'>Unfollow</a>
 		
-		<!-- Otherwise, show the follow link -->
+			<!-- Otherwise, show the follow link -->
 				<? else: ?>
                    <a href='/posts/follow/<?=$user['user_id']?>'>Follow</a>
                 <? endif; ?>
