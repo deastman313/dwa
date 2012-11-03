@@ -15,6 +15,7 @@ public function error ($login=NULL) {
 }
 
 
+
 public function p_signup() {
 		
 	# Encrypt the password	
@@ -124,8 +125,10 @@ public function p_password() {
 	$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
 	$body    = View::instance('e_users_new_password');
 	$body->password = $new_password;
-	$subject = "Password reset";
+	$subject = "Your P!NG password has been reset";
 	$email = Email::send($to, $from, $subject, nl2br($body), true, '');
+	
+	
   }
 }
 
