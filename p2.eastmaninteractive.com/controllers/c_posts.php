@@ -7,7 +7,7 @@ class posts_controller extends base_controller {
 		
 		# Make sure user is logged in if they want to use anything in this controller
 		if(!$this->user) {
-			die("Members only. <a href='/users/login'>Login</a>");
+			Router::redirect("/index/index/restricted");
 		}
 		
 	}
@@ -93,6 +93,13 @@ public function p_add() {
 	
 	}
 	
+/************************************************************************
+
+The manage and delete functions will allow the logged in user to: 
+1) see all of his or her posts and 2) delete individual posts as desired.
+
+************************************************************************/
+	
 public function manage() {
 	
 	$this->template->content = View::instance('v_posts_manage');
@@ -103,12 +110,21 @@ public function manage() {
 		WHERE user_id = ".$this->user->user_id;
 		
 	$myposts = DB::instance(DB_NAME)->select_rows($q);
+	$noposts = NULL;
+
+	# If no posts are returned, this means the user has no posts or deleted all of his/her posts
 	
-	$this->template->content->myposts=$myposts;
+	if(empty($myposts)){
+			$noposts = TRUE;
+			$this->template->content->noposts = $noposts;
+
+		} else {
+			$this->template->content->myposts = $myposts;
+		}
 	
 	echo $this->template;
-	
-	}
+		
+}
 
 public function delete($delete) {
 	
@@ -118,7 +134,7 @@ public function delete($delete) {
 	
 	Router::redirect('/posts/manage');
 	
-	}
+}
 
 }
 
