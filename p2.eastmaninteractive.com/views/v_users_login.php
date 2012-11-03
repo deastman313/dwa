@@ -1,14 +1,18 @@
-	<h2>Already have an account? </h2>
-				<form method='POST' action='/users/p_login'>
-                	<legend>Log in</legend>
-            		<label class="control-label" for="inputEmail">Email</label>
-            		<input type="text" id="inputEmail" placeholder="Email" name="email">
-            		<label class="control-label" for="inputPassword">Password</label>
-            		<input type="password" id="inputPassword" placeholder="Password"  name="password">
+<div class="span6">
+<h2>Already have an account? </h2>
+	<form method='POST' action='/users/p_login'>
+     	<legend>Log in</legend>
+
+        <label class="control-label" for="inputEmail">Email</label>
+        <input type="text" id="inputEmail" name="email">
+        <label class="control-label" for="inputPassword">Password</label>
+        <input type="password" id="inputPassword" name="password">
                     
-                    <label class="control-label" for="inputRemember">Remember Me</label>
-            		<input type="checkbox" id="inputRemember" placeholder="Remember"  name="remember_user">
+        <label class="checkbox">
+        <input type="checkbox" name="remember_user"> Remember me on this computer
+    	</label>
                     
-                    <br /><br />
-             		<input type='submit'>
-    			</form>
+         <br />
+         <button type="submit" class="btn">Submit</button>
+    	</form>
+</div>
