@@ -44,10 +44,10 @@
           			<div class="nav-collapse collapse">
           			<? if($user): ?>
 						<ul class="nav">
-            				<li><a href="/index">Home</a></li>
                 			<li><a href="/users/dashboard">Dashboard</a></li>
                 			<li><a href="/posts/users">P!NG Users</a></li>
                 			<li><a href="/posts/manage">Manage P!NGs</a></li>
+                            <li><a href="/users/profile/<?=$user->user_id?>">Manage Profile</a></li>
              			</ul>
                          <div class="navbar-form pull-right">
                           <a href="/users/logout"><button class="btn">Log Out</button></a>
@@ -61,15 +61,18 @@
     				</div><!--/.nav-collapse -->
         		</div>
       		</div>
-    	</div>
-    </div>
-    <? endif; ?>
-
-	 <div class="container">
-		<?=$content;?> 
+            </div>
+        </div>
+        <? endif; ?>
+    
+         <div class="container">
+         	<div class="block">
+            <?=$content;?> 
+            
+           
 
 	
-
+		</div>
 	<footer><p>&copy; P!NG 2012</p></footer>
   </div>  
 </body>
