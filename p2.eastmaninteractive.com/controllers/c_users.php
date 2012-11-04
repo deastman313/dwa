@@ -10,11 +10,19 @@ public function error ($login=NULL) {
 	
 	$this->template->content = View::instance('v_users_error');
 	$this->template->content->login=$login;
+	$this->template->title= "Error";
 	
 	echo $this->template;
 }
 
-
+public function success ($profile=NULL) {
+	
+	$this->template->content = View::instance('v_users_success');
+	$this->template->content->profile=$profile;
+	$this->template->title= "Sucaess";
+	
+	echo $this->template;
+}
 
 public function p_signup() {
 		
@@ -82,7 +90,7 @@ public function p_login() {
 	# Store this token in a cookie
 	setcookie("token", $token, strtotime('+1 year'), '/');
 		
-	# Send them to the main page - or whever you want them to go
+	# Send them to the dashboard
 	Router::redirect("/users/dashboard");
 					
 	}	
@@ -93,6 +101,7 @@ public function password($error=NULL) {
 	
 	$this->template->content = View::instance('v_users_password');
 	$this->template->content->error=$error;
+	$this->template->title= "Password Error";
 	echo $this->template;
 	
 }
@@ -119,8 +128,6 @@ public function p_password() {
 	# Update database with new hashed password
 	$update = DB::instance(DB_NAME)->update("users", Array("password" => $hashed_password), "WHERE user_id = ".$user_id);
 	
-	echo $new_password;
-	
 	$to[]    = Array("name" => "P!NGER", "email" => $_POST['email']);
 	$from    = Array("name" => APP_NAME, "email" => APP_EMAIL);
 	$body    = View::instance('e_users_new_password');
@@ -128,18 +135,18 @@ public function p_password() {
 	$subject = "Your P!NG password has been reset";
 	$email = Email::send($to, $from, $subject, nl2br($body), true, '');
 	
+	Router::redirect("/users/success");
+	
 	
   }
 }
 
-
-
-/************************************************************************
-
-The dashboard function gathers the views from posts_index and add
-so the user can see an organized post stream.
-
-************************************************************************/
+	/************************************************************************
+	
+	The dashboard function gathers the views from posts_index and add
+	so the user can see an organized post stream.
+	
+	************************************************************************/
 
 public function dashboard($add = NULL) {
 
@@ -158,7 +165,7 @@ public function dashboard($add = NULL) {
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
 	# Build a query to print the posts of the users who the logged in user is following AND their own posts
-	# Sort the returned query and limit to the 10 most recent posts
+	# Sort the returned query by date and limit to the 10 most recent posts
 	
 	$q = "SELECT t3.*, t2.first_name, t2.last_name
      FROM posts t3
@@ -192,16 +199,16 @@ public function dashboard($add = NULL) {
        
 }
 
-/************************************************************************
-
-The profile and p_profile functions will allow the logged in user to: 
-1) create a rudimentary profile and 2) view other users profiles. 
-User_id is passed as a parameter to the profile function so we can get a 
-specific user's information from the database. User_id is set to the 
-primary key in the profile database so when the logged in user's data
-is posted to the DB, it deletes the previous version. 
-
-************************************************************************/
+	/************************************************************************
+	
+	The profile and p_profile functions will allow the logged in user to: 
+	1) create a rudimentary profile and 2) view other users' profiles. 
+	User_id is passed as a parameter to the profile function so we can get a 
+	specific user's information from the database. User_id is set to the 
+	primary key in the profile database so when the logged in user's data
+	is posted to the DB, it deletes the previous version. 
+	
+	************************************************************************/
 
 
 public function profile($user_id) {
@@ -212,10 +219,12 @@ public function profile($user_id) {
 		Router::redirect("/index/index/restricted");
 			
 	}
+	
 	else {
 	
 	#Set up the view
 	$this->template->content = View::instance('v_users_profile');
+	$this->template->title= "Profile";
 		
 	# Grab the contents of the profile out of the database 
 	
@@ -228,6 +237,7 @@ public function profile($user_id) {
 	# Gather the rows from the query
 	$profile_contents = DB::instance(DB_NAME)->select_row($q);
 	
+	# If a user hasn't filled in a particular field, we change the NULL to "Unspecified"
 	foreach($profile_contents as $key=> &$value)
 	{
 		if ($value!=NULL) {
@@ -263,10 +273,7 @@ public function p_profile() {
 	DB::instance(DB_NAME)->update_or_insert_row('profiles', $_POST);
 		
 	# Quick and dirty feedback
-	Router::redirect("/users/dashboard/");
-		
-	# Quick and dirty feedback
-	echo "You just modified your profile";
+	Router::redirect("/users/success/profile");
 	
 }
 
