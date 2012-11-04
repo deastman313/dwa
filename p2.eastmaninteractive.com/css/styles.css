@@ -9,7 +9,12 @@ h2, h3, h4, h5 {
 
 body, h1 { font-family: 'PT Sans', sans-serif;}
 
-body { background:url(../images/subtle_dots.png) repeat; font-size: 15px}
+body { 
+	background:url(../images/subtle_dots.png) repeat; 
+	font-size: 15px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
 
 .error {font-color: #F00;}
 
