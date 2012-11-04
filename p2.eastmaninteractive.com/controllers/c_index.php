@@ -8,7 +8,6 @@ class index_controller extends base_controller {
 	
 	public function index($restricted=NULL) {
 		
-		# Any method that loads a view will commonly start with this
 		# First, set the content of the template with a view file
 		
 			$this->template->content = View::instance('v_index_index');
@@ -31,18 +30,22 @@ class index_controller extends base_controller {
 			if (!$this->user) {
 		
 			echo $this->template;
+			
 			}
 		
 		# Otherwise, the user is already signed in and can go directly to the landing dashboard
 			else {
 		
 			Router::redirect("/users/dashboard");
+			
 			}
 	}
 	
 	public function about() {
 	
+		# Set up the view for the About P!NG page -- everyone can see this
 		$this->template->content = View::instance('v_index_about');
+		
 		echo $this->template;
 
 	}
