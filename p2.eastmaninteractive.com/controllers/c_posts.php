@@ -16,7 +16,7 @@ public function users() {
 
 	# Set up the view
 	$this->template->content = View::instance("v_posts_users");
-	$this->template->title   = "Users";
+	$this->template->title   = "P!NG Users";
 	
 	# Build our query to get all the users
 	$q = "SELECT *
