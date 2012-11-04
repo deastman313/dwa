@@ -42,8 +42,9 @@
           	<a class="brand" href="/index">P!NG</a>
           		<div id="menu">
           			<div class="nav-collapse collapse">
-          			<? if($user): ?>
 						<ul class="nav">
+                        	<li><a href="/index/about">About</a></li>
+                        <? if($user): ?>
                 			<li><a href="/users/dashboard">Dashboard</a></li>
                 			<li><a href="/posts/users">P!NG Users</a></li>
                 			<li><a href="/posts/manage">Manage P!NGs</a></li>
