@@ -1,7 +1,9 @@
 <? if($restricted):?>
 <h1>Howdy, stranger!</h1>
-<div class="alert alert-error">
-<p>Sorry, you have to be a P!NG member to view this page. Sign up or log in.
+<div class="row">
+	<div class="span8">
+		<div class="alert alert-error">Sorry, you have to be a P!NG member to view this page. Sign up or log in below.</div>
+	</div>
 </div>
 <? else:?>
 <div class="hero-unit">
