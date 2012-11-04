@@ -45,6 +45,7 @@ class index_controller extends base_controller {
 	
 		# Set up the view for the About P!NG page -- everyone can see this
 		$this->template->content = View::instance('v_index_about');
+		$this->template->title = "About P!NG";
 		
 		echo $this->template;
 
