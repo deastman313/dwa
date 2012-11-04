@@ -28,17 +28,22 @@ class index_controller extends base_controller {
 	    	$this->template->client_files = Utils::load_client_files($client_files);   
 	    
 		# If no one is signed in, show the index page
-		if (!$this->user) {
+			if (!$this->user) {
 		
 			echo $this->template;
-		}
+			}
 		
 		# Otherwise, the user is already signed in and can go directly to the landing dashboard
-		else {
+			else {
 		
 			Router::redirect("/users/dashboard");
-		}
-		
+			}
+	}
+	
+	public function about() {
+	
+		$this->template->content = View::instance('v_index_about');
+		echo $this->template;
 
 	}
 
