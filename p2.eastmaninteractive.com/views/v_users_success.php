@@ -10,7 +10,7 @@
     </div>
     <div class="row">
     	<div class="span3">
-        <button class="btn"><a href="/users/dashboard">Return to Dashboard</a></button>
+        <a href="/users/dashboard"><button class="btn">Return to Dashboard</button></a>
         </div>
 	</div>
     
@@ -24,7 +24,7 @@
 	</div>
     <div class="row">
     	<div class="span3">
-    	<button class="btn"><a href="/index">Return to Log In</a></button>
+    	<a href="/index"><button class="btn">Return to Log In</button></a>
     	</div>
     </div>
 <? endif;?>
