@@ -11,7 +11,7 @@
         <p>P!NG is a hub for the developer community to share snippets of code, links, and resources.<br />
            Did you just write the most elegant piece of code known to man? <br />
            P!NG it and share with your followers. </p>
-         <p><a class="btn btn-inverse">Learn more &raquo;</a></p>
+         <p><a class="btn btn-inverse" href="/index/about">Learn more &raquo;</a></p>
 </div>
 <? endif;?>
 <div class="row">
