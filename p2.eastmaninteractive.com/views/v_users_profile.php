@@ -1,11 +1,16 @@
 <h1><?= $profile_contents['first_name']?> <?= $profile_contents['last_name']?>'s Profile </h1>
 
 <? if($profile_contents['user_id']!=$user->user_id): ?>
-
-        Member since: <?= Time::display($profile_contents['account_created']),"",""?><br />
-        Location: <?= $profile_contents['location']?><br />
-        Interests: <?= $profile_contents['interests']?><br />
-        Github Repository: <?= $profile_contents['github']?><br />
+<div class="row">
+	<div class="span6">
+    	<div class="well">
+		<h4>Member since:</h4> <?= Time::display($profile_contents['account_created']),"",""?><br />
+        <h4>Location:</h4> <?= $profile_contents['location']?><br />
+        <h4>Interests:</h4> <?= $profile_contents['interests']?><br />
+        <h4>Github Repository:</h4> <?= $profile_contents['github']?><br />
+        </div>
+   </div>
+</div>
 	
 <? else:?>
 
@@ -13,28 +18,19 @@
 
 	<form method='POST' action='/users/p_profile'>
     
-        <label class="control-label" for="inputLocation">Location</label>
+        <label class="control-label" for="inputLocation"><strong>Location</strong></label>
         <input type="text" id="inputLocation" placeholder="<?= $profile_contents['location']?>" name="location">
         
-        <label class="control-label" for="inputInterests">Interests</label>
+        <label class="control-label" for="inputInterests"><strong>Interests</strong></label>
         <textarea rows="3" id="inputInterests" placeholder="<?= $profile_contents['interests']?>" name="interests"></textarea>
                     
-        <label class="control-label" for="inputGithub">Link to Your Github Repository</label>
+        <label class="control-label" for="inputGithub"><strong>Link to Your Github Repository</strong></label>
         <input type="text" id="inputGithub" placeholder="<?= $profile_contents['github']?>" name="github">
-        
-        
-        <input type="hidden" value="0" name="visibility" />
-		<label class="checkbox"> Allow other users to see my profile
-        <input type="checkbox" value="1" name="visibility" />
-        </label>
-                    
+  
          <br /><br />
-        <button type='submit' class="btn">Submit</button>
+        <button type='submit' class="btn">Update</button>
     	</form>
     
-    
-	
-	<strong>Visibility:</strong> <? if($profile_contents['visibility']=1) :?>Public <? else:?>Private<? endif?>
 
 <? endif;?>
              
