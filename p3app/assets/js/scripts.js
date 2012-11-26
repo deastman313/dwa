@@ -47,6 +47,14 @@ $("#add1").on("click", function() {
     $("#degree1-in-document").append(" in " + value);
 });
 
+$("#add2").live("click", function() {
+									  
+	var value=$("#major2").val();
+	
+    $("#degree2-in-document").append(" in " + value);
+});
+
+
 /*This function selects the degree from both the parent and cloned element. Must use "live" when working with cloned elements. */
 
 $('.select').live("change", function() {
@@ -205,25 +213,46 @@ $(function(){
     };
 	
 	
-    $('.add').click(addWork); // attach event
+    $('.add2').click(addWork); // attach event
 });
 
+/*-------------------------------------------------------------------------------------------------
+	RESET TEMPLATE
+-------------------------------------------------------------------------------------------------*/
 
-
-	$('#refresh-button').click(function() {
-					
-		$('#message-in-canvas').html("");
-		$('#recipient-in-canvas').html("");
-		$('.draggable').remove();
-		$('#canvas').css('background-color', 'white');
-		$('#canvas').css('background-image', '');
-	
+	$('#reset').click(function() {
+									
+		$('#name-in-document').empty();
+		$('#email-in-document').empty();
+		$('#address-in-document').empty();
+		$('#phone-in-document').empty();
+		$('#school1-in-document').empty();
+		$('#school2-in-document').empty();
+		$('#degree1-in-document').empty();
+		$('#degree2-in-document').empty();
+		$('#location1-in-document').empty();
+		$('#location2-in-document').empty();
+		$('#start1-in-document').empty();
+		$('#start2-in-document').empty();
+		$('#end1-in-document').empty();
+		$('#end2-in-document').empty();
+		$('#company1-in-document').empty();
+		$('#company2-in-document').empty();
+		$('#position1-in-document').empty();
+		$('#position2-in-document').empty();	
+		$('#city1-in-document').empty();
+		$('#city2-in-document').empty();
+		$('#start_job1-in-document').empty();
+		$('#start_job2-in-document').empty();
+		$('#end_job1-in-document').empty();
+		$('#end_job2-in-document').empty();
+		$('#skills-in-document').empty();		
 	});
 	
 	
-	/*-------------------------------------------------------------------------------------------------
-	
-	-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------
+	PRINT
+-------------------------------------------------------------------------------------------------*/
 
 	$('#print-button').click(function() {
 		
