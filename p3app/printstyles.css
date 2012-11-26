@@ -118,7 +118,7 @@ ul { margin: 0; padding: 0; }
 #location1-in-document, #location2-in-document, #city1-in-document, #city2-in-document {
 	font-style: italic;
 	font-size: 14px;
-	padding-top: 12px;
+	margin-top: 12px;
 }
 
 .holder { overflow: hidden; clear:both; }
