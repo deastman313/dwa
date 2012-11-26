@@ -23,11 +23,25 @@
 </head>
 <body>
 <div class="container">
-	<h1>Easy CV</h1>
+<div class="row">
+	<div class="span5"><h1>Easy CV</h1></div>
+    <div class="span7">
+    	<div class="align">
+    	<input type='button' id='print-button' value='Print' class='btn'>
+        <input type="button" id='reset' value='Reset Document' class='btn'>
+    	</div>
+        </div>
+    </div>
+<div class="row">
+	<div class="span12">
+	<p class="intro">Create a personalized CV in minutes! Type your credentials in the text areas below and watch the preview pane update dynamically.
+    Your Easy CV can contain up to two schools, two job-related experiences, and additional skills.
+    Each input field supports a limited number of characters, located in parentheses to the right of the field name. <br><br>
+    Use the print button to access a version of your CV that can be saved as a PDF document.  
+    </div>
+</div>
     <div class="row first">
     	<div class="span5">
-        <input type='button' id='print-button' value='Print' class='btn'>
-        <input type="button" id='reset' value='Reset Document' class='btn'>
         	<div class="accordion" id="accordion2">
 				<div class="accordion-group"><!--Open Accordion Group-->
 					<div class="accordion-heading">
@@ -35,7 +49,7 @@
 					</div>
 					<div id="collapseOne" class="accordion-body collapse in">
 					<div class="accordion-inner">
-                    <p>Choose a font:
+                    <h5>Choose a font:</h5>
                     	<form id="myform">
     						<select id="fs"> 
                             	<option value="Arial">Arial - Default</option>
@@ -45,7 +59,7 @@
                                 <option value="Times New Roman">Times New Roman</option>
     						</select>
                         </form>
-                    <p>Choose the alignment of the heading area:
+                    <h5>Choose the alignment of the heading area:</h5>
 					<p>(Centered by default) 
                     	<input type="button" id="btnAlignment" value="Switch Alignment" class="btn" />
 					</div>
@@ -58,16 +72,16 @@
 					</div>
 					<div id="collapseTwo" class="accordion-body collapse">
 					<div class="accordion-inner">
-                    <h5>Full Name</h5>
+                    <h5>Full Name (40 characters)</h5>
 					<input type='text' id='name' maxlength="40" class="js-key-up">
                         
-        			<h5>Email Address</h5>
+        			<h5>Email Address (30 characters)</h5>
                     <input type='text' id='email' maxlength="30" class="js-key-up">
                            
-         			<h5>Street Address</h5>
+         			<h5>Street Address (50 characters)</h5>
                     <input type='text' id='address' maxlength="50" class="js-key-up">
                            
-        			<h5>Phone Number</h5>
+        			<h5>Phone Number (20 characters)</h5>
                     <input type='text' id='phone' maxlength="20" class="js-key-up">
                     <div class='error' id='recipient-error'></div>
                
@@ -81,11 +95,11 @@
                     	<div class="accordion-inner">
                     		<div id="education">
                             	 <div id="edu1" class="education">
-                                     <h5>Name of School Attended</h5>
+                                     <h5>Name of School Attended (40 characters)</h5>
                                         <input type='text' id='school1' class="js-key-up" maxlength="40">
-                                     <h5>Location</h5>
+                                     <h5>Location (10 characters)</h5>
                                         <input type='text' id='location1' class="js-key-up" maxlength="10">
-                                     <h5>Years Attended</h5>
+                                     <h5>Years Attended (4 characters)</h5>
                                         <label class="control-label">From Year: </label>
                                         <input type='text' id='start1' class="js-key-up date" maxlength="4">
                                       
@@ -111,10 +125,9 @@
                                         </select>
                                     </form>
                                     
-                                    <h5>Major</h5>
-                                    
+                                    <h5>Major (20 characters)</h5>
                                     <input type='text' id='major1' maxlength="20"><br>
-                                    <button id="add1" value="Add to document">Add major to document</button><br>
+                                    <button id="add1" value="Add to document">Add major to document</button><br><br>
                                         
                                   </div>
                                   <a href="#" class="add">Add another school</a>
@@ -130,16 +143,16 @@
 					<div class="accordion-inner">
                     	<div id="work">
                         <div id="wrk" class="work">
-                        <h5>Company Name</h5>
+                        <h5>Company Name (40 characters)</h5>
                         <input type='text' id='company1' maxlength="40" class="js-key-up">
                             
-                        <h5>Position Held</h5>
+                        <h5>Position Held (40 characters)</h5>
                         <input type='text' id='position1' maxlength="40" class="js-key-up">
                                
-                        <h5>Location</h5>
+                        <h5>Location (10 characters)</h5>
                         <input type='text' id='city1' maxlength="10" class="js-key-up">
                                
-                        <h5>Years Held</h5>
+                        <h5>Years Held (4 characters)</h5>
                         <label class="control-label">From Year: </label>
                             <input type='text' id='start_job1' class="js-key-up date" maxlength="4">
                                           
@@ -187,8 +200,8 @@
                     <div class="subheading">EDUCATION</div>
                     
     					<div class="column-one even-height">
-                        	<div id='school1-in-document'>Wellesley College</div>
-                            <div id='degree1-in-document'></div>
+                        	<div id='school1-in-document'>Indiana University Bloomington</div>
+                            <div id='degree1-in-document'>Bachelor of Arts in Political Science</div>
                             
                         
                         	<div id='school2-in-document'></div>
@@ -196,8 +209,8 @@
                         </div><!--Close left column-->
                         
    						<div class="column-two even-height">
-                        	<div id="location1-in-document"></div>
-                        	<div id='start1-in-document'></div>-<div id="end1-in-document"></div>
+                        	<div id="location1-in-document">Indiana</div>
+                        	<div id='start1-in-document'>1996</div>-<div id="end1-in-document">2000</div>
                             
                             <div id="location2-in-document"></div>
            					<div id='start2-in-document'></div>-<div id="end2-in-document"></div>
@@ -207,12 +220,12 @@
                     
                     <div class="subheading">WORK EXPERIENCE</div>   
                         	<div class="column-one even-height"> 
-                         	<div id='company1-in-document'>Pawnee Parks and Recreation Dept.</div>
-                            <div id='position1-in-document'>Director</div>
+                         	<div id='company1-in-document'>Pawnee City Parks and Recreation</div>
+                            <div id='position1-in-document'>Deputy Director</div>
                             	<ul class="noindent">
-                                	<li><div id="respa_1-in-document"></div></li>
-                                    <li><div id="respb_1-in-document"></div></li>
-                                    <li><div id="respc_1-in-document"></div></li>
+                                	<li><div id="respa_1-in-document">Recreational facilities and services</div></li>
+                                    <li><div id="respb_1-in-document">Community organizing</div></li>
+                                    <li><div id="respc_1-in-document">Maintaining a positive attitude at all times</div></li>
                                </ul>
                          	<div id='company2-in-document'> </div>
                             <div id='position2-in-document'></div>
