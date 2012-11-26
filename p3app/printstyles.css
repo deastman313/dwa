@@ -2,7 +2,7 @@
 /* CSS Document */
 
 @import url('http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200|Merriweather:400,300,700,900');
-@import url('http://fonts.googleapis.com/css?family=Lora:400,400italic,700italic,700|Arimo:400,400italic,700,700italic|Open+Sans:400,700,300')
+@import url('http://fonts.googleapis.com/css?family=Lora:400,400italic,700italic,700|Arimo:400,400italic,700,700italic|Open+Sans:400,700,300');
 
 h1, h2 {
 	font-family: 'Yanone Kaffeesatz', serif;
@@ -28,7 +28,7 @@ body {
 }
 
 #cv {
-	width:624px;
+	width:650px;
 	height:864px;
 	position:relative;
 	overflow:hidden;
@@ -58,7 +58,7 @@ body {
 #name-in-document {
 	width:100%;
 	padding-top:30px;
-	font-size:32px;
+	font-size:36px;
 	z-index:999;
 	font-weight: 700;
 }
@@ -71,9 +71,10 @@ body {
 
 .subheading {
 	border-bottom: 1px solid black;
-	margin-bottom: 8px;
+	margin-bottom: 15px;
 	letter-spacing: 1.5px;
-	margin-top: 5px;
+	margin-top: 15px;
+	font-size: 30px;
 }
 
 #address-in-document {
@@ -87,11 +88,10 @@ body {
 	width:100%;
 	font-size:22px;
 	font-weight: bold;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	padding-top: 10px;
 }
 
-#degree1-in-document, .major1-in-document, #degree2-in-document, .major2-in-document  {
+#degree1-in-document, .major1-in-document, #degree2-in-document, .major2-in-document, #position1-in-document, #position2-in-document  {
 	font-size: 20px;
 }
 
