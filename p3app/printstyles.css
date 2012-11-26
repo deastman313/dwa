@@ -9,6 +9,7 @@ h1, h2 {
 	color: #FFF:
 }
 
+
 h4 {
 	margin: 0;
 	padding: 0;
@@ -23,6 +24,8 @@ body {
 	line-height: 22px;
 	margin: 0;
 }
+
+ul { margin: 0; padding: 0; }
 
 #cv {
 	width:710px;
@@ -44,14 +47,14 @@ body {
 	text-align: center;
 	width:100%;
 	padding-bottom: 15px;
-	line-height: 26px;
+	line-height: 30px;
 }
 
 #heading.left {
 	text-align: left;
 	width:100%;
 	padding-bottom: 15px;
-	line-height: 26px;
+	line-height: 30px;
 }
 
 #name-in-document {
@@ -115,6 +118,7 @@ body {
 #location1-in-document, #location2-in-document, #city1-in-document, #city2-in-document {
 	font-style: italic;
 	font-size: 14px;
+	padding-top: 12px;
 }
 
 .holder { overflow: hidden; clear:both; }
