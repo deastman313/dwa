@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
 
+@import url('http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200|Merriweather:400,300,700,900');
+@import url('http://fonts.googleapis.com/css?family=Lora:400,400italic,700italic,700|Arimo:400,400italic,700,700italic|Open+Sans:400,700,300')
 
 h1, h2 {
 	font-family: 'Yanone Kaffeesatz', serif;
@@ -36,9 +38,8 @@ body {
 }
 
 #text {
-	width: 85.3%px;
+	width: 85.3%;
 	margin: 0 auto;
-	border: 1px solid red;
 	height: 92.7%;
 }
 
@@ -57,14 +58,14 @@ body {
 #name-in-document {
 	width:100%;
 	padding-top:30px;
-	font-size:20px;
+	font-size:32px;
 	z-index:999;
 	font-weight: 700;
 }
 
-#email-in-document {
+#email-in-document, #phone-in-document {
 	width:100%;
-	font-size:12px;
+	font-size:22px;
 	z-index:999;
 }
 
@@ -72,50 +73,63 @@ body {
 	border-bottom: 1px solid black;
 	margin-bottom: 8px;
 	letter-spacing: 1.5px;
-	font-weight: bold;
 	margin-top: 5px;
-}
-
-.hr {
-	border-bottom: 1px solid #000;
 }
 
 #address-in-document {
 	width:100%;
-	font-size:12px;
+	font-size:22px;
 	z-index:999;
 	margin-top:-4px;
 }
 
 #school1-in-document, #school2-in-document, #company1-in-document, #company2-in-document {
 	width:100%;
-	font-size:14px;
+	font-size:22px;
 	font-weight: bold;
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
-#degree1-in-document {
-	font-size: 12px;
+#degree1-in-document, .major1-in-document, #degree2-in-document, .major2-in-document  {
+	font-size: 20px;
 }
 
-.major1-in-document {
-	font-size: 12px;
+.major1-in-document, .major2-in-document {
+	display: inline-block;
 }
 
 .date {
-    width: 50px;
+    width: 70px;
 }
 
-#start1-in-document, #end1-in-document {
+#start1-in-document, #end1-in-document, #start2-in-document, #end2-in-document, #start_job1-in-document, #end_job1-in-document,  
+#start_job2-in-document, #end_job2-in-document
+{
 	display: inline-block;
 	font-style:italic;
+	font-size: 10px;
 }
 
-#location1-in-document {
+#location1-in-document, #location2-in-document, #city1-in-document, #city2-in-document {
 	font-style: italic;
+	font-size: 16px;
 }
 
 .holder { overflow: hidden; clear:both; }
 .holder .even-height { float: left; padding-bottom: 100000px; margin-bottom: -100000px; }
-.column-one { width: 70%;}
-.column-two { width: 30%;}
+.column-one { width: 80%; }
+.column-two { width: 20%; }
 
+
+ul.noindent {
+	margin: 0;
+	padding: 0;
+}
+
+ul.noindent li {
+	list-type: none;
+	margin: 0;
+	padding: 1px 0 1px 0;
+	font-size: 16px;
+}
