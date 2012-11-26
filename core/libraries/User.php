@@ -250,11 +250,12 @@ class User {
 		$update = DB::instance(DB_NAME)->update("users", Array("password" => $hashed_password), "WHERE user_id = ".$user_id);
 	
 		# Success
-		if($update) 
+		if($update) {
 			return $new_password;
-		else 
+		}
+		else {
 			return false;
-	
+		}
 	}
 	
 	/*-------------------------------------------------------------------------------------------------
