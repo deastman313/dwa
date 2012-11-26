@@ -71,10 +71,9 @@ body {
 
 .subheading {
 	border-bottom: 1px solid black;
-	margin-bottom: 15px;
 	letter-spacing: 1.5px;
-	margin-top: 15px;
-	font-size: 30px;
+	margin-top: 30px;
+	font-size: 26px;
 }
 
 #address-in-document {
