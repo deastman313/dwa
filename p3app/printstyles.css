@@ -1,9 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
 
-@import url('http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200|Merriweather:400,300,700,900');
-@import url('http://fonts.googleapis.com/css?family=Lora:400,400italic,700italic,700|Arimo:400,400italic,700,700italic|Open+Sans:400,700,300');
-
 h1, h2 {
 	font-family: 'Yanone Kaffeesatz', serif;
 	font-weight: normal;
