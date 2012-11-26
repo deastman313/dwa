@@ -26,9 +26,8 @@
 	<h1>Easy CV</h1>
     <div class="row first">
     	<div class="span5">
-        <input type='button' id='print-button' value='Print'>
-        <a href="#" id="print">Print</a>
-
+        <input type='button' id='print-button' value='Print' class='btn'>
+        <input type="button" id='reset' value='Reset Document' class='btn'>
         	<div class="accordion" id="accordion2">
 				<div class="accordion-group"><!--Open Accordion Group-->
 					<div class="accordion-heading">
@@ -156,10 +155,23 @@
                             2. <input type='text' id='respb_1' class="js-key-up" maxlength="55"><br>
                             3. <input type='text' id='respc_1' class="js-key-up" maxlength="55"><br>
                         </div>
-                        <a href="#" class="add">Add another work experience</a>
+                        <a href="#" class="add2">Add another work experience</a>
                         </div>
                         </div>
                         </div>
+				</div><!--Close Accordion Group-->
+                <div class="accordion-group"><!--Open Accordion Group-->
+					<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive"><h4>Additional Skills</h4></a>
+					</div>
+					<div id="collapseFive" class="accordion-body collapse">
+					<div class="accordion-inner">
+                    <h5>List Additional Skills</h5>
+					<textarea class="js-key-up" id="skills"></textarea>
+                    <div class="remaining"><strong>Characters remaining:</strong> <span class="count">300</span></div>
+               
+					</div>
+					</div>
 				</div><!--Close Accordion Group-->
 			</div><!--Close Accordion-->
         </div>
@@ -179,11 +191,11 @@
                     
     					<div class="column-one even-height">
                         	<div id='school1-in-document'>Wellesley College</div>
-                            <div id='degree1-in-document'><div class="major1-in-document"></div></div>
+                            <div id='degree1-in-document'></div>
                             
                         
-                        	<div id='school2-in-document'> </div>
-                            <div id='degree2-in-document'><div class="major2-in-document"></div></div>
+                        	<div id='school2-in-document'></div>
+                            <div id='degree2-in-document'></div>
                         </div><!--Close left column-->
                         
    						<div class="column-two even-height">
@@ -219,6 +231,9 @@
                             <div id="city2-in-document"></div>
            					<div id='start_job2-in-document'></div>-<div id="end_job2-in-document"></div>
                     </div><!--Close right column-->
+                    <div style="clear:both;"> 
+                    <div class="subheading">SKILLS</div>  
+                    <div id="skills-in-document"></div> 
         			
                     </div><!--Close container--> 
 				</div>
