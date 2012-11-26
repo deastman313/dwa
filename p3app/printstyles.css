@@ -28,7 +28,7 @@ body {
 }
 
 #cv {
-	width:650px;
+	width:680px;
 	height:864px;
 	position:relative;
 	overflow:hidden;
@@ -41,7 +41,7 @@ body {
 	width: 85.3%;
 	margin: 0 auto;
 	height: 92.7%;
-	line-height: 24px;
+	line-height: 26px;
 }
 
 #heading.center {
@@ -76,6 +76,7 @@ body {
 	margin-top: 30px;
 	font-size: 26px;
 	padding-top: 20px;
+	padding-bottom: 5px;
 }
 
 #address-in-document {
