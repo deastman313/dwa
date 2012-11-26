@@ -60,7 +60,7 @@ body {
 	font-weight: 700;
 }
 
-#email-in-document, #phone-in-document {
+#email-in-document  {
 	width:100%;
 	font-size:22px;
 	z-index:999;
@@ -75,7 +75,7 @@ body {
 	padding-bottom: 5px;
 }
 
-#address-in-document {
+#address-in-document, #phone-in-document {
 	width:100%;
 	font-size:22px;
 	z-index:999;
