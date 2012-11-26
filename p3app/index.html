@@ -93,7 +93,7 @@
                                         <input type='text' id='end1' class="js-key-up date" maxlength="4">
                                         
                                      <h5>Degree Obtained</h5>
-                                        <form id="myform">
+                                        <form id="myform1">
                                         <select id="degree1" class="select"> 
                                             <option value="">Select Degree</option>
                                             <option value="BA">Bachelor of Arts</option>
@@ -111,12 +111,10 @@
                                         </select>
                                     </form>
                                     
-                                    <h5>Optional Elements</h5>
-                                    	<h6>Major</h6>
+                                    <h5>Major</h5>
+                                    
                                     <input type='text' id='major1' maxlength="50"><br>
-                                    <button id="add1" value"Add to document">Add to document</button>
-               
-                                    <h5>Check to add optional elements:</h5>
+                                    <button id="add1" value="Add to document">Add major to document</button>
                                         
                                   </div>
                                   <a href="#" class="add">Add another school</a>
@@ -142,10 +140,10 @@
                         <input type='text' id='city1' maxlength="60" class="js-key-up">
                                
                         <h5>Years Held</h5>
-                        <label class="control-label" for="inputFromDate">From Year: </label>
+                        <label class="control-label">From Year: </label>
                             <input type='text' id='start_job1' class="js-key-up date" maxlength="4">
                                           
-                            <label class="control-label" for="inputToDate">To Year: </label>
+                            <label class="control-label">To Year: </label>
                             <input type='text' id='end_job1' class="js-key-up date" maxlength="4">
                         
                         <h5>Responsibilities</h5>
@@ -167,8 +165,8 @@
 					<div id="collapseFive" class="accordion-body collapse">
 					<div class="accordion-inner">
                     <h5>List Additional Skills</h5>
-					<textarea class="js-key-up" id="skills"></textarea>
-                    <div class="remaining"><strong>Characters remaining:</strong> <span class="count">300</span></div>
+					<textarea class="js-key-up" id="skills" maxlength="150"></textarea>
+                    <div class="remaining"><strong>This section supports 150 characters. Characters remaining:</strong> <span class="count">150</span></div>
                
 					</div>
 					</div>
@@ -205,7 +203,9 @@
                             <div id="location2-in-document"></div>
            					<div id='start2-in-document'></div>-<div id="end2-in-document"></div>
                          </div><!--Close right column-->
+                    
                     <div style="clear:both;">   
+                    
                     <div class="subheading">WORK EXPERIENCE</div>   
                         	<div class="column-one even-height"> 
                          	<div id='company1-in-document'>Pawnee Parks and Recreation Dept.</div>
@@ -231,13 +231,17 @@
                             <div id="city2-in-document"></div>
            					<div id='start_job2-in-document'></div>-<div id="end_job2-in-document"></div>
                     </div><!--Close right column-->
+                    
                     <div style="clear:both;"> 
+                    
                     <div class="subheading">SKILLS</div>  
                     <div id="skills-in-document"></div> 
         			
                     </div><!--Close container--> 
-				</div>
-			</div>
+						</div>
+					</div>
+         		</div>
+         	</div>
          </div>
        </div><!--Close Span7-->
 	</div><!--Close Row -->
