@@ -12,7 +12,7 @@ $(':checkbox:checked').prop('checked',false);
 	ACCORDION FUNCTIONS
 	-------------------------------------------------------------------------------------------------*/
 
-$(function() {
+
 
     $('.accordion').on('show', function (e) {
          $(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
@@ -22,7 +22,7 @@ $(function() {
         $(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
     });
         
-});
+
 
 
 /*-------------------------------------------------------------------------------------------------
@@ -82,7 +82,6 @@ $("#fs").change(function() {
 	HEADING FUNCTIONS
 	-------------------------------------------------------------------------------------------------*/
 
-$(document).ready(function(){
 	 
 	 $('#btnAlignment').click(function(){
      
@@ -94,7 +93,7 @@ $(document).ready(function(){
 	  
 	});
 	
-});
+
 
 // for each "Characters remaining: ###" element found
 $('.remaining').each(function(){
@@ -150,7 +149,7 @@ $("#add_major").click(function(){
 	} 
 });
 
-$(function(){
+
 		   
     var template = $('#education .education:first').clone(),
 		educationCount = 1;
@@ -181,9 +180,9 @@ $(function(){
 	
 	
     $('.add').click(addEducation); // attach event
-});
+
 	
-$(function(){
+
 		   
     var template2 = $('#work .work:first').clone(),
 		workCount = 1;
@@ -221,32 +220,11 @@ $(function(){
 -------------------------------------------------------------------------------------------------*/
 
 	$('#reset').click(function() {
-									
-		$('#name-in-document').empty();
-		$('#email-in-document').empty();
-		$('#address-in-document').empty();
-		$('#phone-in-document').empty();
-		$('#school1-in-document').empty();
-		$('#school2-in-document').empty();
-		$('#degree1-in-document').empty();
-		$('#degree2-in-document').empty();
-		$('#location1-in-document').empty();
-		$('#location2-in-document').empty();
-		$('#start1-in-document').empty();
-		$('#start2-in-document').empty();
-		$('#end1-in-document').empty();
-		$('#end2-in-document').empty();
-		$('#company1-in-document').empty();
-		$('#company2-in-document').empty();
-		$('#position1-in-document').empty();
-		$('#position2-in-document').empty();	
-		$('#city1-in-document').empty();
-		$('#city2-in-document').empty();
-		$('#start_job1-in-document').empty();
-		$('#start_job2-in-document').empty();
-		$('#end_job1-in-document').empty();
-		$('#end_job2-in-document').empty();
-		$('#skills-in-document').empty();		
+		
+		// Give resetable elements a resetable class to simplify this process
+		$('.resetable').empty();
+		
+	
 	});
 	
 	
@@ -273,4 +251,4 @@ $(function(){
 	});
 	
 			
-});
+}); // end doc ready
