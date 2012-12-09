@@ -1,0 +1,9 @@
+2012-11-04 1:44:07 - INFO --> Controller/Method: users/p_password 
+2012-11-04 1:44:07 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY info@eastmaninteractive.com 
+2012-11-04 1:44:07 - INFO --> From: P!NG! (info@eastmaninteractive.com) 
+2012-11-04 1:44:07 - INFO --> To: P!NGER (diana.eastman@gmail.com),  
+2012-11-04 1:44:07 - INFO --> CC:  
+2012-11-04 1:44:07 - INFO --> BCC:  
+2012-11-04 1:44:07 - INFO --> Subject: Your P!NG password has been reset 
+2012-11-04 1:44:07 - INFO --> Body: <br /><br />
+<b>Notice</b>:  Undefined variable: b 

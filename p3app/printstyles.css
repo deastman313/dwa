@@ -1,0 +1,143 @@
+@charset "UTF-8";
+/* CSS Document */
+
+h1, h2 {
+	font-family: 'Yanone Kaffeesatz', serif;
+	font-weight: normal;
+	letter-spacing: 1.5px;
+	padding-bottom: 20px;
+	color: #FFF:
+}
+
+
+h4 {
+	margin: 0;
+	padding: 0;
+}
+
+h3, h4, h5, body,  { font-family: Helvetica, sans-serif;}
+
+body { 
+	font-size: 14px;
+    padding-bottom: 40px;
+	letter-spacing: 1.0px;
+	line-height: 22px;
+	margin: 0;
+}
+
+ul { margin: 0; padding: 0; }
+
+#cv {
+	width:710px;
+	height:864px;
+	position:relative;
+	overflow:hidden;
+	margin: 0 auto;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#text {
+	width: 85.3%;
+	margin: 0 auto;
+	height: 92.7%;
+	line-height: 26px;
+}
+
+#heading.center {
+	text-align: center;
+	width:100%;
+	padding-bottom: 15px;
+	line-height: 30px;
+}
+
+#heading.left {
+	text-align: left;
+	width:100%;
+	padding-bottom: 15px;
+	line-height: 30px;
+}
+
+#name-in-document {
+	width:100%;
+	padding-top:30px;
+	font-size:36px;
+	z-index:999;
+	font-weight: 700;
+}
+
+#email-in-document  {
+	width:100%;
+	font-size:22px;
+	z-index:999;
+}
+
+.subheading {
+	border-bottom: 1px solid black;
+	letter-spacing: 1.5px;
+	margin-top: 20px;
+	font-size: 24px;
+	padding-top: 20px;
+	padding-bottom: 5px;
+}
+
+#address-in-document, #phone-in-document {
+	width:100%;
+	font-size:22px;
+	z-index:999;
+	margin-top:-4px;
+}
+
+#school1-in-document, #school2-in-document, #company1-in-document, #company2-in-document {
+	width:100%;
+	font-size:22px;
+	font-weight: bold;
+	padding-top: 10px;
+	
+}
+
+#degree1-in-document, .major1-in-document, #degree2-in-document, .major2-in-document, #position1-in-document, #position2-in-document  {
+	font-size: 20px;
+}
+
+.major1-in-document, .major2-in-document {
+	display: inline-block;
+}
+
+.date {
+    width: 70px;
+}
+
+#start1-in-document, #end1-in-document, #start2-in-document, #end2-in-document, #start_job1-in-document, #end_job1-in-document,  
+#start_job2-in-document, #end_job2-in-document
+{
+	display: inline-block;
+	font-style:italic;
+	font-size: 14px;
+	padding-top: 12px;
+}
+
+#location1-in-document, #location2-in-document, #city1-in-document, #city2-in-document {
+	font-style: italic;
+	font-size: 14px;
+	display: inline-block;
+	padding-top: 12px;
+}
+
+.holder { overflow: hidden; clear:both; }
+.holder .even-height { float: left; padding-bottom: 100000px; margin-bottom: -100000px; }
+.column-one { width: 80%; }
+.column-two { width: 20%; }
+
+
+ul.noindent {
+	margin: 0;
+	padding-top: 20px;
+}
+
+ul.noindent li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	line-height: 20px;
+}
