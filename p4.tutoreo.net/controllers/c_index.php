@@ -26,7 +26,7 @@ class index_controller extends base_controller {
 			
 			$q= "SELECT youtube_id
 			FROM videos
-			ORDER BY created DESC LIMIT 3";
+			ORDER BY created DESC LIMIT 1";
 	
 			# Run our query, grabbing all the posts and joining in the users	
 			$latest_videos = DB::instance(DB_NAME)->select_rows($q);
