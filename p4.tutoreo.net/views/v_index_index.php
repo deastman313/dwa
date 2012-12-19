@@ -7,15 +7,12 @@
 <? else:?>
 	<div class="span8">
     	<h1>Latest Tutorials</h1>
-        <div id="page">
-     		<ul id="slider">
+        
             	<div id="whateverID">
                 <iframe width="640" height="390" frameborder="0" title="YouTube video player" type="text/html" src="http://www.youtube.com/embed/<?=$latest_video['youtube_id']?>?enablejsapi=1">
                 </iframe>
                 <a href="javascript:void callPlayer(&quot;whateverID&quot;,&quot;stopVideo&quot;)">Stop</a>
                 </div>
-     		</ul>
-        </div>
     </div>
     
     <div class="span4">
