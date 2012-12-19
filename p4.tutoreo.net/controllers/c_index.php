@@ -19,10 +19,7 @@ class index_controller extends base_controller {
 	
 		# If this view needs any JS or CSS files, add their paths to this array so they will get loaded in the head
 			$client_files = Array(
-						"/assets/css/rhinoslider-1.05.css",
-						"/assets/js/rhinoslider-1.05.js",
-						"/assets/js/easing.js",
-						"/assets/js/mousewheel.js",
+						
 	                    );
 	    
 	    	$this->template->client_files = Utils::load_client_files($client_files);   
