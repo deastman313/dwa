@@ -88,8 +88,8 @@ public function p_votes () {
 	
 	$q = "SELECT * 
 		FROM votes
-		WHERE video_id=$video_id 
-		AND user_id = ".$this->user->user_id;	
+		WHERE video_id=".$video_id." 
+		AND user_id=".$this->user->user_id;	
 		
 	$thisvote = DB::instance(DB_NAME)->select_rows($q);
 	
@@ -104,13 +104,16 @@ public function p_votes () {
 		
 		$where_condition = "WHERE video_id = $video_id AND user_id = ".$this->user->user_id;	
 		
-		DB::instance(DB_NAME)->update_row('votes', $_POST, $where_condition);
+		# DB::instance(DB_NAME)->update_row('votes', $_POST, $where_condition);
+		DB::instance(DB_NAME)->delete('votes', $where_condition);
+		DB::instance(DB_NAME)->insert('votes', $_POST);
+		
 		
 		}
 	
 	$data = Array();
 	
-	$q = "SELECT sum(value) FROM votes WHERE video_id=$video_id";
+	$q = "SELECT sum(value) FROM votes WHERE video_id=".$video_id;
 	$data['voteCount'] = DB::instance(DB_NAME)->select_field($q);
 	
 	echo json_encode($data);
