@@ -80,8 +80,7 @@ public function add () {
 	
 	$q = "SELECT distinct group_name 
 	FROM videos
-	WHERE group_name != ''
-	AND user_id = ".$this->user->user_id;
+	WHERE user_id = ".$this->user->user_id;
 
 		
 	$groups = DB::instance(DB_NAME)->select_rows($q);
