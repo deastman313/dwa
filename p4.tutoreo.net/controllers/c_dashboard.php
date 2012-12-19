@@ -104,7 +104,7 @@ public function add () {
 	
 	echo $this->template;
 	
-}
+	}
 
 public function p_add () {
 			
@@ -128,6 +128,43 @@ public function p_add () {
 	Router::redirect("/dashboard/add");
 	
 	}
+
+public function mytutorials () {
+	
+	if(!$this->user) {
+		
+		Router::redirect("/index/index/restricted");
+	}
+	
+	# Setup view
+	$this->template->content = View::instance('v_dashboard_mytutorials');
+	$this->template->menu = View::instance('v_menu');
+	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	
+	$q = "SELECT * 
+	FROM videos
+	WHERE user_id = ".$this->user->user_id;
+	
+	$myvideos = DB::instance(DB_NAME)->select_rows($q);
+	$novideos = NULL; 
+	
+	if(!$myvideos) {
+		
+		$novideos = TRUE;
+		$this->template->content->novideos = $novideos;
+	}
+	
+	else {
+	
+		$this->template->content->myvideos = $myvideos;
+	
+	}
+	
+	echo $this->template;
+	
+}
+
+	
 
 
 } // end class
