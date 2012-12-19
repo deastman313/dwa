@@ -78,18 +78,28 @@ public function add () {
 		Router::redirect("/index/index/restricted");
 	}
 	
-	$q = "SELECT distinct group_name 
-	FROM videos
-	WHERE user_id = ".$this->user->user_id;
-
-		
-	$groups = DB::instance(DB_NAME)->select_rows($q);
-	
 	# Setup view
 	$this->template->content = View::instance('v_dashboard_add');
 	$this->template->menu = View::instance('v_menu');
-	$this->template->content->groups=$groups;
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	
+	$q = "SELECT distinct group_name 
+	FROM videos
+	WHERE user_id = ".$this->user->user_id;
+	
+	$groups = DB::instance(DB_NAME)->select_rows($q);
+	$nogroups = NULL; 
+	
+	if(!$groups) {
+		
+		$this->template->content->nogroups = $nogroups;
+	}
+	
+	else {
+	
+		$this->template->content->groups = $groups;
+	
+	}
 	
 	echo $this->template;
 	
