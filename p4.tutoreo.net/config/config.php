@@ -15,7 +15,7 @@ If you want a different default time format for this app, set it below
 
 
 # What is the name of this app?
-	define('APP_NAME', 'P!NG!');  
+	define('APP_NAME', 'Tutoreo');  
 
 # When email is sent out from the server, where should it come from?
 # Ideally, this should match the domain name
@@ -42,5 +42,5 @@ A email designated to receive messages from the server. Examples:
 	define('SMTP_PASSWORD', 'lgtchsrs45t');
 
 # For extra security, you might want to set different salts than what the core uses
-	define('PASSWORD_SALT', 'theface!');
-	define('TOKEN_SALT', 'gangamstyle');
+	define('PASSWORD_SALT', 'allhailthequeen');
+	define('TOKEN_SALT', 'coffeeyum');
