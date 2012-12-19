@@ -15,11 +15,11 @@
                     
                 <!-- If there exists a connection with this user, show an unfollow link -->
                 <? if(isset($subscriptions[$video['user_id']])): ?>
-            	<div id="container"><a class="following" id="<?=$video['user_id']?>"><button class="btn btn-success">Following</button></a></div>
+            	<div id="<?=$video['user_id']?>"><button class="btn followButton following">Following</button></div>
 		
 				<!-- Otherwise, show the follow link -->
 				<? else: ?>
-               	<div id="container"><a class="follow" id="<?=$video['user_id']?>"><button class="btn btn-inverse">Follow</button></a></div>
+               	<div id="<?=$video['user_id']?>"><button class="btn followButton">Follow</button></div>
                 <? endif; ?>
            		 	
   		</div><!--Close well-->
@@ -89,42 +89,56 @@
             }
             return false;
         });
-		
-	$("a.following").live("click", function() {
-    var element = $(this);
-    var id = $(this).attr("id");
-	var button = $(this).closest("button");
-              
 
-    $.ajax({
-        type: 'POST',
-        url: 'videos/p_subscription',
-        data: {user_id_followed: id},
-        success: function(result) {
-            element.removeClass("following").addClass("follow");
-			button.removeClass("btn-success").addClass("btn-inverse");
-        }
-    });
-
-    return false;
+$('button.followButton').live('click', function(e){
+    e.preventDefault();
+    $button = $(this);
+	var id = $(this).closest("div").attr("id");
+    if($button.hasClass('following')){
+        
+        $.ajax({
+            	url: '/videos/p_unsubscribe',
+            	data: {user_id_followed: id},
+            	type: 'POST',
+				success: function(response) { 
+	
+				$button.removeClass('following');
+        		$button.removeClass('unfollow');
+        		$button.text('Follow');
+							
+				},
+        	});
+        
+    } else {
+        
+         $.ajax({
+            	url: '/videos/p_subscribe',
+            	data: {user_id_followed: id},
+            	type: 'POST',
+				success: function(response) { 
+	
+				$button.addClass('following');
+        		$button.text('Following');
+							
+				},
+        	});
+    }
 });
 
-$("a.follow").live("click", function() {
-    var element = $(this);
-    var id = $(this).attr("id");
-	var button = $(this).closest("button");
-
-	  $.ajax({
-        type: 'POST',
-        url: 'videos/p_subscription',
-        data: {user_id_followed: id},
-        success: function(result) {
-            element.removeClass("follow").addClass("following");
-			button.removeClass("btn-inverse").addClass("btn-success");
-        }
-    });
-
+$('button.followButton').hover(function(){
+     $button = $(this);
+    if($button.hasClass('following')){
+        $button.addClass('unfollow');
+        $button.text('Unfollow');
+    }
+}, function(){
+    if($button.hasClass('following')){
+        $button.removeClass('unfollow');
+        $button.text('Following');
+    }
 });
+
+	
 
  $('.sort').click(function () {
 	var element = $(this);
