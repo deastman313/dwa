@@ -1,5 +1,5 @@
 <div class="span9">
-	<? if(isset($nogroups)): ?>
+	<? if(isset($novideos)): ?>
     	<div class="well">
         	<h3 class="add">No Tutorials</h3>
   				<p>You haven't added any tutorials yet. Once you do, they'll show up here!
