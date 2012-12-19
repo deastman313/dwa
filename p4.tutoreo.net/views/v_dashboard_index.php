@@ -1,14 +1,18 @@
 <div class="span9">
  <? if(isset($nosubscriptions)):?>
 	<div class="alert alert-block">
-  		<p>Sorry, there's nothing to see here yet! Browse videos and follow other users.</p>
+    	<h3 class="add">About Subscriptions</h3>
+  		<p>Your Subscriptions page houses all of the videos from users you are following. 
+        <p>You aren't following anyone now, but you can browse videos to find some users to follow. After following a user, her or his 
+        videos will appear here.</p><br />
+        <p><a href="/videos/index"><button class="btn">Great, take me there!</button></a>
     </div>
-     <a href="/videos/index"><button class="btn">Take me there</button></a>
+    
 	
 	<!--Otherwise display the user's feed. This displays the first 10 P!NGs so the page doesn't scroll endlessly-->
 	<? else: ?>
     
-	<?=$feed?>
+	<?=$vidquery;?>
     
     <? endif;?>
 </div>
