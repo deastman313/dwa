@@ -29,8 +29,13 @@
 			  <option type="text" name="other" id="other" value="other">Uncategorized</option>
         	</select>
          
-         	<!--If there are any groups set in the system, the user can add the tutorial to one of these groups. If no groups set, we hide this-->
-         	<? if(isset($groups)): ?>
+     		<!--If there are no groups set in the system, the user must add this tutorial to a new group-->
+         	<? if(isset($nogroups)): ?>
+            <label class="control-label" for="inputGroupNew" id="groupNew">Create a New Group:</label>
+        	<input type="text" id="groupNew" name="group_name" class="required" value="group_name">
+            
+            <!--If there are any groups set in the system, the user can add the tutorial to one of these groups. If no groups set, we hide this-->
+            <? else:?>
         	<label class"control-label" for="inputNewGroup">Add to a Group:</label>   
         	
             	<select name="group_name" id="group_names" class="addGroup">
@@ -47,10 +52,6 @@
         	</div>
             <!--end New Group-->
         
-        	<!--If there are no groups set in the system, the user must add this tutorial to a new group-->
-        	<? else:?>
-        	<label class="control-label" for="inputGroupNew" id="groupNew">Create a New Group:</label>
-        	<input type="text" id="groupNew" name="group_name" class="required" value="group_name">
 			<? endif; ?>
         	
             <br /><br />
