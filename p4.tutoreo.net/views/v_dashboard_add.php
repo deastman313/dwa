@@ -36,7 +36,7 @@
             
             <!--If there are any groups set in the system, the user can add the tutorial to one of these groups. If no groups set, we hide this-->
             <? else:?>
-        	<label class"control-label" for="inputNewGroup">Add to a Group:</label>   
+        	<label class="control-label" for="inputNewGroup">Add to a Group:</label>   
         	
             	<select name="group_name" id="group_names" class="addGroup">
         			<? foreach($groups as $group): ?>
