@@ -25,28 +25,35 @@ public function index () {
 	# Setup view
 	$this->template->content = View::instance('v_dashboard_index');
 	$this->template->menu = View::instance('v_menu');
-	$this->template->title   = $this->user->first_name. "'s Dashboard";
-	$this->template->content->feed = View::instance('v_videos_subscriptions');
-	
+	$this->template->content->vidquery = View::instance('v_vidquery');
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
 	# Build a query to print the videos of the users who the logged in user is subscribed to
 	# Sort the returned query by date by default and limit to the 10 most recent videos
 	
-	$q = "SELECT t2.*
-     FROM videos t2
-	 LEFT JOIN subscriptions t1
-     ON t2.user_id = t1.user_id_followed
-     WHERE t1.user_id = ".$this->user->user_id."
-	 ORDER BY t2.modified DESC LIMIT 10";
+	$q= "SELECT s.*, s2.*, sum(q.value) as voteCount
+ 	FROM videos s 
+ 	LEFT JOIN subscriptions s2 ON s.user_id  = s2.user_id_followed 
+ 	LEFT JOIN votes q ON q.video_id = s.video_id
+ 	WHERE s2.user_id = ".$this->user->user_id."
+	GROUP BY s.video_id";
 	
 	# Run our query, grabbing all the posts and joining in the users	
-	$subscriptions = DB::instance(DB_NAME)->select_rows($q);
+	$videos = DB::instance(DB_NAME)->select_rows($q);
+	
+	$q = "SELECT * 
+		FROM subscriptions
+		WHERE user_id = ".$this->user->user_id;
+		
+	# Execute this query with the select_array method
+	# select_array will return our results in an array and use the "users_id_followed" field as the index.
+	# This will come in handy when we get to the view
+	# Store our results (an array) in the variable $connections
+	$subscriptions = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
 	
 	$nosubscriptions = NULL;
-	
 	# If there aren't any posts returned from the query, set noposts to true and pass this to the view
-	if(empty($subscriptions)){
+	if(!$videos){
 		
 	$nosubscriptions = TRUE;
 	$this->template->content->nosubscriptions = $nosubscriptions;
@@ -54,7 +61,8 @@ public function index () {
 	# Otherwise, gather up the returned posts and pass to the user's feed
 	} else {
 	
-		$this->template->content->feed->subscriptions = $subscriptions;
+		$this->template->content->vidquery->videos = $videos;
+		$this->template->content->vidquery->subscriptions=$subscriptions;
 	}
 
 	
@@ -70,9 +78,9 @@ public function add () {
 		Router::redirect("/index/index/restricted");
 	}
 	
-	$q = "SELECT group_name 
+	$q = "SELECT distinct group_name 
 	FROM videos
-	WHERE group_name != NULL
+	WHERE group_name != ''
 	AND user_id = ".$this->user->user_id;
 
 		
