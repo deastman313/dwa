@@ -92,6 +92,7 @@ public function add () {
 	
 	if(!$groups) {
 		
+		$nogroups = TRUE;
 		$this->template->content->nogroups = $nogroups;
 	}
 	
