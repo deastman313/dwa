@@ -2,8 +2,9 @@
 	<? foreach($videos as $video): ?>
     	<div class="well">
     		 	
-			<a class="vote up" href="#" id="<?=$video['video_id']?>"><img src="/assets/images/vote_up.png"/></a><span class="<?=$video['video_id']?>"><?=$video['voteCount']?></span>
-            <a class="vote down" href="#" id="<?=$video['video_id']?>"><img src="/assets/images/vote_down.png"/></a>
+			<a class="vote up" rel="tooltip" title="Vote up" href="#" id="<?=$video['video_id']?>"><img src="/assets/images/vote_up.png"/></a>
+            <span class="<?=$video['video_id']?>"><?=$video['voteCount']?></span>
+            <a class="vote down" rel="tooltip" title="Vote down" href="#" id="<?=$video['video_id']?>"><img src="/assets/images/vote_down.png"/></a>
             	<div class="title">
              		<h2><?=$video['title']?></h2>
                     	Posted <?=Time::time_ago ($video['modified'], $dateto=-1)?>
@@ -28,6 +29,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+							   
+		$("[rel=tooltip]").tooltip();
 							   
         $('.vote').click(function () {
 								   
