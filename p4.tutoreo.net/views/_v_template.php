@@ -71,8 +71,7 @@
  	</div>  
 </div>
   <script type="text/javascript"> $(document).ready(function(){ 
-	$("#subForm").validate(); 
-   $("#slider").rhinoslider();
+	$("#subForm").validate();
    }); 
   </script>
   <script type='text/javascript'>
