@@ -22,6 +22,7 @@ public function index () {
 	
 	# Setup view
 	$this->template->content = View::instance('v_videos_index');
+	$this->template->content->vidquery = View::instance('v_vidquery');
 	$this->template->menu = View::instance('v_menuvids');
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
@@ -44,8 +45,8 @@ public function index () {
 	# Store our results (an array) in the variable $connections
 	$subscriptions = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
 	
-	$this->template->content->videos = $videos;
-	$this->template->content->subscriptions=$subscriptions;
+	$this->template->content->vidquery->videos = $videos;
+	$this->template->content->vidquery->subscriptions=$subscriptions;
 
 	# Render view
 	echo $this->template;
@@ -72,6 +73,49 @@ public function groups ($group_name) {
 	$group_names = DB::instance(DB_NAME)->select_rows($q);
 	
 	$this->template->content->group_names = $group_names;
+
+	# Render view
+	echo $this->template;
+       
+	}
+
+public function groupvideos ($name) {
+
+	# If user is blank, redirect to a restricted page with a message asking he/she to sign up or log in
+	if(!$this->user) {
+		
+		Router::redirect("/index/index/restricted");
+	}
+	
+	# Setup view
+	$this->template->content = View::instance('v_videos_index');
+	$this->template->content->vidquery = View::instance('v_vidquery');
+	$this->template->menu = View::instance('v_menuvids');
+	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	
+	# Run a query to return video data and sum the total votes by video_id
+	$q= "SELECT videos.*, sum(votes.value) as voteCount
+	FROM videos LEFT OUTER JOIN votes ON videos.video_id=votes.video_id
+	WHERE videos.group_name='$name'
+	GROUP BY video_id ORDER BY voteCount DESC";
+	
+	# Run our query, grabbing all the posts and joining in the users	
+	$videos = DB::instance(DB_NAME)->select_rows($q);
+	
+	# Build our query to figure out what connections does this user already have? I.e. who are they following
+	$q = "SELECT * 
+		FROM subscriptions
+		WHERE user_id = ".$this->user->user_id;
+		
+	# Execute this query with the select_array method
+	# select_array will return our results in an array and use the "users_id_followed" field as the index.
+	# This will come in handy when we get to the view
+	# Store our results (an array) in the variable $connections
+	$subscriptions = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
+	
+	$this->template->content->vidquery->videos = $videos;
+	$this->template->content->vidquery->subscriptions=$subscriptions;
+	$this->template->content->vidquery->name = $name;
 
 	# Render view
 	echo $this->template;
@@ -107,7 +151,6 @@ public function p_votes () {
 		# DB::instance(DB_NAME)->update_row('votes', $_POST, $where_condition);
 		DB::instance(DB_NAME)->delete('votes', $where_condition);
 		DB::instance(DB_NAME)->insert('votes', $_POST);
-		
 		
 		}
 	
@@ -153,17 +196,6 @@ public function p_unsubscribe () {
 
 	# Send them back
 	Router::redirect("/videos/index");
-
-	}
-
-public function unfollow($user_id_followed) {
-
-	# Delete this connection
-	$where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
-	DB::instance(DB_NAME)->delete('users_users', $where_condition);
-	
-	# Send them back
-	Router::redirect("/posts/users");
 
 	}
 
