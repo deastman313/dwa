@@ -52,12 +52,32 @@ public function index () {
        
 	}
 
-public function p_sort () {
+public function groups ($group_name) {
 
-
-
-}
+	# If user is blank, redirect to a restricted page with a message asking he/she to sign up or log in
+	if(!$this->user) {
+		
+		Router::redirect("/index/index/restricted");
+	}
 	
+	# Setup view
+	$this->template->content = View::instance('v_videos_groups');
+	$this->template->menu = View::instance('v_menuvids');
+	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	
+	# Run a query to return video data and sum the total votes by video_id
+	$q= "SELECT distinct group_name from videos order by group_name";
+	
+	# Run our query, grabbing all the posts and joining in the users	
+	$group_names = DB::instance(DB_NAME)->select_rows($q);
+	
+	$this->template->content->group_names = $group_names;
+
+	# Render view
+	echo $this->template;
+       
+	}
+
 	
 public function p_votes () {
 	
@@ -98,7 +118,7 @@ public function p_votes () {
 	}
 
 
-public function p_subscription () {
+public function p_subscribe () {
 		 
 	# Associate this post with this user
 	$_POST['user_id']  = $this->user->user_id;
@@ -108,6 +128,25 @@ public function p_subscription () {
 	
 	# Do the insert
 	DB::instance(DB_NAME)->insert('subscriptions', $_POST);
+
+	# Send them back
+	Router::redirect("/videos/index");
+
+	}
+	
+public function p_unsubscribe () {
+	
+	$followed_id=intval($_POST['user_id_followed']);
+		 
+	# Associate this post with this user
+	$_POST['user_id']  = $this->user->user_id;
+		
+	# Unix timestamp of when this post was created / modified
+	$_POST['created']  = Time::now();
+	
+	# Unsubscribe
+	$where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$followed_id;
+	DB::instance(DB_NAME)->delete('subscriptions', $where_condition);
 
 	# Send them back
 	Router::redirect("/videos/index");
