@@ -72,7 +72,7 @@ public function add () {
 	
 	$q = "SELECT group_name 
 	FROM videos
-	WHERE group_name != ''
+	WHERE group_name != NULL
 	AND user_id = ".$this->user->user_id;
 
 		
