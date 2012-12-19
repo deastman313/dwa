@@ -13,6 +13,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/video.js"></script>
     
 				
 	<!-- Controller Specific JS/CSS -->
