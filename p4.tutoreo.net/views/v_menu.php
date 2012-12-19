@@ -5,7 +5,7 @@
         		<h4>Howdy <?=$user->first_name?>!</h4>
         			<li><a href="/dashboard/index">My Subscriptions</a></li>
             		<li><a href="/dashboard/add">Add a Tutorial</a></li>
-  				<li><a href="#">My Tutorials</a></li>
+  				<li><a href="/dashboard/mytutorials">My Tutorials</a></li>
 			</ul>
         </div>
     </div>
