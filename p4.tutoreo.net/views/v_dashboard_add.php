@@ -2,7 +2,7 @@
 	<div class="well">
     	<h2 class="add">Add a Tutorial</h2>
     		<form method='POST' action='/dashboard/p_add' id="addVideo">
-        	<label class="control-label" for="inputURL">Paste the Youtube URL:</label>
+        	<label class="control-label" for="inputURL">*Paste the Youtube URL:</label>
         	<input type="text" id="inputURL" name="url" class="required">
         
         	<!--Rudimentary alert message indicating that the URL isn't a valid Youtube URL; hidden by default-->
@@ -12,8 +12,8 @@
         	</div>
             <!--End alert-->
         
-        	<label class="control-label" for="inputTitle">Title Your Tutorial:</label>
-        	<input type="text" id="inputTitle" name="title" class="required" value="Required">
+        	<label class="control-label" for="inputTitle">*Title Your Tutorial:</label>
+        	<input type="text" id="inputTitle" name="title" class="required">
         
        		<label class="control-label" for="inputTag">Tag Your Tutorial:</label>
        		<select name="tag">
@@ -31,12 +31,12 @@
          
      		<!--If there are no groups set in the system, the user must add this tutorial to a new group-->
          	<? if(isset($nogroups)): ?>
-            <label class="control-label" for="inputGroupNew" id="groupNew">Create a New Group:</label>
-        	<input type="text" id="groupNew" name="group_name" class="required" value="group_name">
+            <label class="control-label" for="inputGroupNew" id="groupNew">*Create a New Group:</label>
+        	<input type="text" id="groupNew" name="group_name" class="required">
             
             <!--If there are any groups set in the system, the user can add the tutorial to one of these groups. If no groups set, we hide this-->
             <? else:?>
-        	<label class="control-label" for="inputNewGroup">Add to a Group:</label>   
+        	<label class="control-label" for="inputNewGroup">*Add to a Group:</label>   
         	
             	<select name="group_name" id="group_names" class="addGroup">
         			<? foreach($groups as $group): ?>
@@ -50,10 +50,11 @@
         		<label for="inputNewGroup" id="groupNew">New Group Name:</label>
     			<input type="text" class="text" name="group_name" id="groupNew"/>
         	</div>
+           
             <!--end New Group-->
-        
+        	 
 			<? endif; ?>
-        	
+        	<p><strong>* Fields are required.</strong>
             <br /><br />
         <button type='submit' class="btn">Submit</button>
     </form>
