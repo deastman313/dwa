@@ -66,10 +66,12 @@
 			<? if(isset($menu)) echo $menu; ?>
     		<?=$content;?> 
         </div>
-        <div class="row">
-			<footer><p>&copy; Tutoreo 2012</p></footer>
-		</div>
  	</div>  
+</div>
+<div class="container">
+  <div class="row">
+		<footer><p>&copy; Tutoreo 2012</p></footer>
+	</div>
 </div>
   <script type="text/javascript"> $(document).ready(function(){ 
 	$("#subForm").validate();
