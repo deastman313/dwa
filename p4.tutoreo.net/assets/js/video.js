@@ -66,8 +66,10 @@ $('.vote').click(function () {
  $('button.followButton').live('click', function(e){
     e.preventDefault();
     $button = $(this);
+	
 	var id = $(this).closest("div").attr("id");
-    if($button.hasClass('following')){
+    
+	if($button.hasClass('following')){
         
         $.ajax({
             	url: '/videos/p_unsubscribe',
@@ -99,8 +101,9 @@ $('.vote').click(function () {
 });
 
 $('button.followButton').hover(function(){
-     $button = $(this);
-    if($button.hasClass('following')){
+    $button = $(this);
+    
+	if($button.hasClass('following')){
         $button.addClass('unfollow');
         $button.text('Unfollow');
     }
