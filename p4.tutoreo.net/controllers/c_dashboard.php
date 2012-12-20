@@ -27,7 +27,6 @@ public function index () {
 	# Setup view
 	$this->template->content = View::instance('v_dashboard_index');
 	$this->template->menu = View::instance('v_menu');
-	$this->template->content->vidquery = View::instance('v_vidquery');
 	$this->template->title   = $this->user->first_name. "'s Dashboard";
 	
 	# Build a query to print the videos of the users who the logged in user is subscribed to
@@ -64,8 +63,8 @@ public function index () {
 	# Otherwise, gather up the returned videos and pass to the user's feed
 	} else {
 	
-		$this->template->content->vidquery->videos = $videos;
-		$this->template->content->vidquery->subscriptions=$subscriptions;
+		$this->template->content->videos = $videos;
+		$this->template->content->subscriptions=$subscriptions;
 	}
 
 	# Render view
