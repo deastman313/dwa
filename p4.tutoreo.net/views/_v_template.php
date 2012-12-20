@@ -73,21 +73,21 @@
 		<footer><p>&copy; Tutoreo 2012</p></footer>
 	</div>
 </div>
-  <script type="text/javascript"> $(document).ready(function(){ 
+  <script type="text/javascript"> 
+  	$(document).ready(function(){ 
+	
 	$("#subForm").validate();
-   }); 
-  </script>
-  <script type='text/javascript'>
-	$(function(){
-		var url = window.location.pathname, 
-        urlRegExp = new RegExp(url.replace(/\/$/,'') + "$"); 
-        $('#menu a').each(function(){
+	
+	});
+	
+	var url = window.location.pathname, 
+    urlRegExp = new RegExp(url.replace(/\/$/,'') + "$"); 
+    $('#menu a').each(function(){
             if(urlRegExp.test(this.href.replace(/\/$/,''))){
                 $(this).addClass('active');
             }
-        });
+    });
 
-});
 </script>
 </body>
 </html>
