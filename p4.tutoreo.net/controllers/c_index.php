@@ -24,12 +24,12 @@ class index_controller extends base_controller {
 	    
 	    	$this->template->client_files = Utils::load_client_files($client_files);   
 			
-			$q= "SELECT youtube_id
+			$q= "SELECT *
 			FROM videos
 			ORDER BY created DESC LIMIT 1";
 	
 			# Run our query, grabbing all the posts and joining in the users	
-			$latest_videos = DB::instance(DB_NAME)->select_rows($q);
+			$latest_videos = DB::instance(DB_NAME)->select_row($q);
 			$this->template->content->latest_videos = $latest_videos;
 	    
 		# If no one is signed in, show the index page
