@@ -1,5 +1,5 @@
 <div class="span7">
-<h2>Sorry, there seems to be a problem...</h2>
+<h3 class="add">Sorry, there seems to be a problem...</h3>
 
 <!--If login=TRUE, then we know there is a problem with their password or email-->
 
