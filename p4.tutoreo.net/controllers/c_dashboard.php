@@ -9,8 +9,10 @@ class dashboard_controller extends base_controller {
     
     /************************************************************************
 	
-	The dashboard function gathers the views from posts_index and add
-	so the user can see an organized post stream.
+	The dashboard controller handles three major tasks: 
+	(1) Printing out the videos the user has subscribed to,
+	(2) Allowing the user to add tutorials and
+	(3) Allowing the user to delete any tutorials added.
 	
 	************************************************************************/
 
@@ -30,6 +32,7 @@ public function index () {
 	
 	# Build a query to print the videos of the users who the logged in user is subscribed to
 	# Sort the returned query by date by default and limit to the 10 most recent videos
+	# Here we must also gather the vote count
 	
 	$q= "SELECT s.*, s2.*, sum(q.value) as voteCount
  	FROM videos s 
@@ -52,13 +55,13 @@ public function index () {
 	$subscriptions = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
 	
 	$nosubscriptions = NULL;
-	# If there aren't any posts returned from the query, set noposts to true and pass this to the view
+	# If there aren't any posts returned from the query, set nosubscriptions to true and pass this to the view
 	if(!$videos){
 		
 	$nosubscriptions = TRUE;
 	$this->template->content->nosubscriptions = $nosubscriptions;
 
-	# Otherwise, gather up the returned posts and pass to the user's feed
+	# Otherwise, gather up the returned videos and pass to the user's feed
 	} else {
 	
 		$this->template->content->vidquery->videos = $videos;
@@ -80,7 +83,10 @@ public function add () {
 	# Setup view
 	$this->template->content = View::instance('v_dashboard_add');
 	$this->template->menu = View::instance('v_menu');
-	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	$this->template->title   = "Add a Tutorial";
+	
+	# Query the database to see the groups that exist -- these will be
+	# added as select items in a dropdown list on the view 
 	
 	$q = "SELECT distinct group_name 
 	FROM videos
@@ -124,7 +130,7 @@ public function p_add () {
 	# Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
 	DB::instance(DB_NAME)->insert('videos', $_POST);
 		
-	# Quick and dirty feedback - CHANGE
+	# Redirect to My Tutorials Page
 	Router::redirect("/dashboard/mytutorials");
 	
 	}
@@ -139,7 +145,7 @@ public function mytutorials () {
 	# Setup view
 	$this->template->content = View::instance('v_dashboard_mytutorials');
 	$this->template->menu = View::instance('v_menu');
-	$this->template->title   = $this->user->first_name. "'s Dashboard";
+	$this->template->title   = $this->user->first_name. "'s Tutorials";
 	
 	$q = "SELECT * 
 	FROM videos
