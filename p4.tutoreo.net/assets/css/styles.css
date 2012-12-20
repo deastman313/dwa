@@ -15,6 +15,8 @@ h2.add {padding-bottom: 20px; padding-top: -10px;}
 
 h5 {font-size: 26px; }
 
+.about {font-size: 18px; line-height: 22px;}
+
 body { font-size: 15px;}
 
 .wrapper {background:url(/assets/images/pattern2.png) repeat;}
@@ -50,16 +52,12 @@ body { font-size: 15px;}
 	letter-spacing: 2px;
 }
 
-.slidebox {
-	width: 400px;
-}
-
 ul.nav a.active {
-	color: #FFF;
+	color: #000;
 }
 
 .container h1 {
-	margin-top: 20px;
+	margin-top: 5px;
 	margin-bottom: 20px;
 }
 
@@ -67,34 +65,7 @@ ul.nav a.active {
 	min-height: 650px;
 }
 
-.span3 .profiles {
-	font-family: 'Arvo', serif;
-	font-size: 16px;
-}
-
-.btn:hover {
-    color:#333;
-    border-color:#999;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f6f6f6)); /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, #ffffff, #f6f6f6); /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image:    -moz-linear-gradient(top, #ffffff, #f6f6f6); /* FF3.6 */
-    background-image:     -ms-linear-gradient(top, #ffffff, #f6f6f6); /* IE10 */
-    background-image:      -o-linear-gradient(top, #ffffff, #f6f6f6); /* Opera 11.10+ */
-    background-image:         linear-gradient(top, #ffffff, #f6f6f6);
-}
-.btn:active{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#ffffff)); /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, #e8e8e8, #ffffff); /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image:    -moz-linear-gradient(top, #e8e8e8, #ffffff); /* FF3.6 */
-    background-image:     -ms-linear-gradient(top, #e8e8e8, #ffffff); /* IE10 */
-    background-image:      -o-linear-gradient(top, #e8e8e8, #ffffff); /* Opera 11.10+ */
-    background-image:         linear-gradient(top, #e8e8e8, #ffffff);
-}
-.btn:focus {
-    outline: none;
-    border-color:#BD4A39;
-}
-
+#footer p {margin-top: 15px}
 
 /* Follow Button Styles */
 
