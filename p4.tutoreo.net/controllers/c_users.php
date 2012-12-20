@@ -82,7 +82,7 @@ public function p_login() {
 	setcookie("token", $token, strtotime('+1 year'), '/');
 		
 	# Send them to the dashboard
-	Router::redirect("/users/dashboard");
+	Router::redirect("/dashboard/index");
 					
 	}	
 
