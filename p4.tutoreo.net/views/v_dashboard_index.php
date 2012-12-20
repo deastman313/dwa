@@ -9,7 +9,9 @@
     </div>
     
 	
-	<!--Otherwise display the user's feed. This displays the first 10 P!NGs so the page doesn't scroll endlessly-->
+	<!--Otherwise display the user's feed. This displays the first 10 videos so the page doesn't scroll endlessly. Would like to explore adding pagination in the future.
+    This is a drawback of the project in its current form.-->
+    
 	<? else: ?>
     
 	<?=$vidquery;?>
