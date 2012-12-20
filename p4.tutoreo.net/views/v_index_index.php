@@ -1,8 +1,12 @@
 <? if($restricted):?>
+<div class="span8">
 <h1>Howdy, stranger!</h1>
-	<div class="span8">
-		<div class="alert alert-error"></div>
-	</div>
+	
+		<div class="well">
+        <p>You have to be signed in to view this page. Sign in at the top left or sign up if you don't yet have an account. 
+        </div>
+        <a href="/index"><button class="btn">Sign me up!</button></a>
+
 </div>
 <? else:?>
 	<div class="span8">
