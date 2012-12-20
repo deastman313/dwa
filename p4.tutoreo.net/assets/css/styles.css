@@ -25,13 +25,15 @@ body { font-size: 15px;}
 
 .title {padding-bottom: 20px;}
 
-.content {padding-top: 70px; padding-bottom: 40px; min-height: 550px;}
+.content {padding-top: 70px; padding-bottom: 40px; min-height: 650px;}
 
 .affix {top: 70px;}​
 			
 .ghost {display:none;}
 
 .form-inline {display: inline;}
+
+ul, li {list-style-type: none;}
 
 .brand {font-family: 'Bree Serif', serif;}
 
@@ -65,7 +67,13 @@ ul.nav a.active {
 	min-height: 650px;
 }
 
-#footer p {margin-top: 15px}
+footer  { 
+ 	clear: both;
+ 	position: relative;
+ 	z-index: 10;
+ 	height: 3em;
+ 	margin-top: -3em;
+}
 
 /* Follow Button Styles */
 
