@@ -65,7 +65,6 @@ public function index () {
 		$this->template->content->vidquery->subscriptions=$subscriptions;
 	}
 
-	
 	# Render view
 	echo $this->template;
        
@@ -104,6 +103,7 @@ public function add () {
 	
 	echo $this->template;
 	
+	
 	}
 
 public function p_add () {
@@ -125,7 +125,7 @@ public function p_add () {
 	DB::instance(DB_NAME)->insert('videos', $_POST);
 		
 	# Quick and dirty feedback - CHANGE
-	Router::redirect("/dashboard/add");
+	Router::redirect("/dashboard/mytutorials");
 	
 	}
 
@@ -164,7 +164,14 @@ public function mytutorials () {
 	
 }
 
+public function delete($delete) {
 	
-
+	$where_condition = 'WHERE video_id = '.$delete;
+	
+	DB::instance(DB_NAME)->delete('videos', $where_condition);
+	
+	Router::redirect('/dashboard/mytutorials');
+	
+}	
 
 } // end class
